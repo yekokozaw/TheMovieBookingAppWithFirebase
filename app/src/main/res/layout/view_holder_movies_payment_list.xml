@@ -27,10 +27,18 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_bold"
             android:textSize="@dimen/text_regular"
-            tools:text="UPI"
+            tools:text="Agree and Continue"
+            android:letterSpacing="0.02"
             android:layout_gravity="start|center_vertical"
             android:layout_marginStart="@dimen/margin_50dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/colorAccent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|end"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:src="@drawable/baseline_keyboard_arrow_right_48"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivPaymentBackIcon"

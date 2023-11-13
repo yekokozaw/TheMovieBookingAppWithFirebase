@@ -48,7 +48,7 @@ class LocationScreenActivity : AppCompatActivity(),CitiesViewHolderDelegate {
     }
 
     override fun onTapCities(city:String) {
-        MainActivity.newIntentFromMainActivity(this,city).also {
+        MainActivity.newIntentFromMainActivity(this).also {
             startActivity(it)
         }
     }

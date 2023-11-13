@@ -29,7 +29,6 @@
             android:layout_below="@+id/vHoleDateCard"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="9dp"
-            android:fontFamily="@font/inter_bold"
             android:textColor="@color/black"
             android:textSize="@dimen/text_regular"
             tools:text="Today" />
@@ -41,7 +40,6 @@
             android:layout_below="@+id/tvDayOfWeekMoviesCinema"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="7dp"
-            android:fontFamily="@font/inter_bold"
             android:textColor="@color/black"
             android:textSize="@dimen/text_regular"
             tools:text="May" />
@@ -57,7 +55,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:fontFamily="@font/inter_bold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_regular_2x"
                 tools:text="8" />

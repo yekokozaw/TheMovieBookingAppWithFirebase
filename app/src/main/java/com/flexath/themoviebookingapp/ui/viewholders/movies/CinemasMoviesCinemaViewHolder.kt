@@ -38,7 +38,6 @@ class CinemasMoviesCinemaViewHolder(
         itemView.tvSeeDetailsMoviesCinema.setOnClickListener {
             delegate.onClickCinemaSeeDetails(mCinema?.cinemaId ?: 0)
         }
-
     }
 
     private fun requestTimeSlotData() {
@@ -54,7 +53,10 @@ class CinemasMoviesCinemaViewHolder(
 
     fun bindData(cinema: CinemaVO) {
         mCinema = cinema
-        itemView.tvCinemaNameMoviesCinema.text = cinema.cinema
+        if (cinema.cinema == "JCTV"){
+            itemView.tvCinemaNameMoviesCinema.text = "JCGV"
+        }else
+            itemView.tvCinemaNameMoviesCinema.text = cinema.cinema
 
         if (mCinema?.isClicked == false) {
             itemView.rvCinemaTimesMoviesCinema.visibility = View.GONE

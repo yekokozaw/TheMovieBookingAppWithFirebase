@@ -28,18 +28,16 @@ class CinemaHomeFragment : Fragment(),CinemaListViewHolderDelegate {
     private lateinit var cinemaListViewPod: CinemaListViewPod
     private val mCinemaModel:CinemaModel = CinemaModelImpl
     private lateinit var sharedPref:SharedPreferences
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_cinema_home, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).bottomNvgViewHome.visibility = View.VISIBLE
 
         sharedPref = activity?.getSharedPreferences("CITY_PREF", Context.MODE_PRIVATE)!!
 
-        setUpAppBarListeners()
+        //setUpAppBarListeners()
         setUpViewPod()
         requestData()
     }
@@ -70,18 +68,18 @@ class CinemaHomeFragment : Fragment(),CinemaListViewHolderDelegate {
 
     private fun requestData() {
         mCinemaModel.getCinemaTimeSlots(
-            "Bearer ${mCinemaModel.getOtp(201)?.token}",
-            "2023-03-17",
+            "All",
+            "Bearer 18112|dp0oclqVIL57JvmormSokXYXsuEndQX0bhIVMswr",
+            "alldate",
             onSuccess = {
                 cinemaListViewPod.setNewData(it)
             },
             onFailure = {
-                Toast.makeText(requireContext(), "This function", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Network Call Error", Toast.LENGTH_SHORT).show()
             }
         )
     }
-
-
+    
     override fun onClickCinemaSeeDetails(cinemaId: Int) {
         val action = CinemaHomeFragmentDirections.actionCinemaHomeToCinemaInfo()
         action.argCinemaId = cinemaId

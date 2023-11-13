@@ -86,10 +86,10 @@
     <dimen name="width_140dp">140dp</dimen>
     <dimen name="width_buy_button">225dp</dimen>
     <dimen name="height_buy_button">50dp</dimen>
-    <dimen name="margin_50dp">50dp</dimen>
-    <dimen name="width_booking_button">239dp</dimen>
+    <dimen name="margin_50dp">70dp</dimen>
+    <dimen name="width_booking_button">219dp</dimen>
     <dimen name="height_booking_button">50dp</dimen>
-    <dimen name="margin_66dp">66dp</dimen>
+    <dimen name="margin_66dp">56dp</dimen>
     <dimen name="width_food">170dp</dimen>
     <dimen name="height_food">220dp</dimen>
     <dimen name="width_food_image">104dp</dimen>
@@ -135,7 +135,7 @@
     <dimen name="margin_7dp">7dp</dimen>
     <dimen name="width_couple_seat">48dp</dimen>
     <dimen name="height_couple_seat">48dp</dimen>
-    <dimen name="width_profile_blur_background">220dp</dimen>
+    <dimen name="width_profile_blur_background">200dp</dimen>
     <dimen name="text_17sp">17sp</dimen>
     <dimen name="margin_42dp">42dp</dimen>
     <dimen name="margin_27dp">27dp</dimen>

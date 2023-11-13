@@ -1,5 +1,7 @@
 package com.flexath.themoviebookingapp.network.api
 
+import com.flexath.themoviebookingapp.data.vos.movie.MovieDetailsVO
+import com.flexath.themoviebookingapp.data.vos.movie.MovieVO
 import com.flexath.themoviebookingapp.data.vos.movie.confirmation.CheckoutBody
 import com.flexath.themoviebookingapp.data.vos.movie.confirmation.TicketCheckoutResponse
 import com.flexath.themoviebookingapp.data.vos.movie.VideoResponse
@@ -35,20 +37,24 @@ interface CinemaApi {
     // Movie Home Screen - Now Showing
     @GET(API_GET_NOW_PLAYING)
     fun getNowPlayingMovies(
-        @Query(PARAM_STATUS) status:String = "current"
+        @Query(PARAM_API_KEY) apiKey:String = MOVIE_API_KEY,
+        @Query(PARAM_PAGE) page: Int = 1
     ) : Call<MovieHomeMovieListResponse>
 
     // Movie Home Screen - Coming Soon
     @GET(API_GET_COMING_SOON)
     fun getComingSoonMovies(
-        @Query(PARAM_STATUS) status:String = "comingsoon"
+        @Query(PARAM_API_KEY) apiKey:String = MOVIE_API_KEY,
+        @Query(PARAM_PAGE) page: Int = 1
     ) : Call<MovieHomeMovieListResponse>
 
     // Movie Detail Screen
     @GET("$API_GET_MOVIE_DETAILS/{movie_id}")
     fun getMovieDetailsById(
-        @Path("movie_id") movieId:String
-    ) : Call<MovieDetailResponse>
+        @Path("movie_id") movieId:String,
+        @Query(PARAM_API_KEY) apiKey:String = MOVIE_API_KEY,
+        @Query("append_to_response") response: String = "casts"
+    ) : Call<MovieDetailsVO>
 
     // Movie Detail Screen
     @GET("$API_GET_VIDEO/{movie_id}/videos")

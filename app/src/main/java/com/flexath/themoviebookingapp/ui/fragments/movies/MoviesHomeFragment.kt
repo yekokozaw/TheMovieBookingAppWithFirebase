@@ -21,6 +21,7 @@ import com.flexath.themoviebookingapp.R
 import com.flexath.themoviebookingapp.data.model.CinemaModel
 import com.flexath.themoviebookingapp.data.model.CinemaModelImpl
 import com.flexath.themoviebookingapp.data.vos.movie.BannerVO
+import com.flexath.themoviebookingapp.data.vos.movie.BannersVO
 import com.flexath.themoviebookingapp.ui.activities.MainActivity
 import com.flexath.themoviebookingapp.ui.adapters.movies.BannerMoviesHomeAdapter
 import com.flexath.themoviebookingapp.ui.adapters.movies.MoviesHomeViewPagerAdapter
@@ -62,7 +63,7 @@ class MoviesHomeFragment : Fragment() {
 
         if(city == null) {
             val citySharedPref = sharedPref.getString("city", "")
-            tvCityNameMoviesHome.text = citySharedPref
+            tvCityNameMoviesHome.text = "Welcome"
         } else {
             val editor = sharedPref.edit()
             editor?.putString("city", city)
@@ -103,7 +104,7 @@ class MoviesHomeFragment : Fragment() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setUpBannerRecyclerView(banners: List<BannerVO>) {
+    private fun setUpBannerRecyclerView(banners: List<BannersVO>) {
         mBannerHomeAdapter = BannerMoviesHomeAdapter(banners)
         viewPagerBannerMoviesHome?.adapter = mBannerHomeAdapter
         dotsIndicatorHome?.attachTo(viewPagerBannerMoviesHome!!)

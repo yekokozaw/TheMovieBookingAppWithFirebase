@@ -1,27 +1,20 @@
 package com.flexath.themoviebookingapp.data.vos.movie
 
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 
+@IgnoreExtraProperties
 data class SnackCategoryVO(
 
-    @SerializedName("created_at")
-    val createdAt: String?,
+    val createdAt: String? = "",
 
-    @SerializedName("deleted_at")
-    val deletedAt: Any?,
+    val id: Int? = 0,
 
-    @SerializedName("id")
-    val id: Int?,
+    val isActive: Int? = 0,
 
-    @SerializedName("is_active")
-    val isActive: Int?,
+    val title: String? = "",
 
-    @SerializedName("title")
-    val title: String?,
+    val titleMm: String? = "",
 
-    @SerializedName("title_mm")
-    val titleMm: String?,
-
-    @SerializedName("updated_at")
-    val updatedAt: String?
+    val updatedAt: String= ""
 )

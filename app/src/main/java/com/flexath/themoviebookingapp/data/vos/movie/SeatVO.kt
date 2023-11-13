@@ -1,23 +1,19 @@
 package com.flexath.themoviebookingapp.data.vos.movie
 
-import com.google.gson.annotations.SerializedName
+import com.google.firebase.database.IgnoreExtraProperties
 
+@IgnoreExtraProperties
 data class SeatVO(
 
-    @SerializedName("id")
-    val id: Int?,
+    var id: Int? = 0,
 
-    @SerializedName("price")
-    val price: Int?,
+    var type: String? = "",
 
-    @SerializedName("seat_name")
-    val seatName: String?,
+    var seat_name: String? = "",
 
-    @SerializedName("symbol")
-    val symbol: String?,
+    var symbol: String? = "",
 
-    @SerializedName("type")
-    val type: String?,
+    val price: Int? = 0,
 
     var isSelected:Boolean = false
 )

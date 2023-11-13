@@ -59,14 +59,4 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnAppBarFilterMoviesSearch"
-        android:layout_width="@dimen/width_filter_icon"
-        android:layout_height="@dimen/height_filter_icon"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="@dimen/margin_medium_4_n"
-        android:layout_marginEnd="@dimen/margin_medium_4_n"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/icon_filter_accent" />
-
 </LinearLayout>

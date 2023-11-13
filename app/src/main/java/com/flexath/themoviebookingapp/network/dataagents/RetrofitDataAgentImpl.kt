@@ -1,15 +1,15 @@
 package com.flexath.themoviebookingapp.network.dataagents
 
 import com.flexath.themoviebookingapp.data.vos.location.CitiesVO
-import com.flexath.themoviebookingapp.data.vos.movie.BannerVO
+import com.flexath.themoviebookingapp.data.vos.movie.BannersVO
 import com.flexath.themoviebookingapp.data.vos.movie.CinemaInfoVO
+import com.flexath.themoviebookingapp.data.vos.movie.MovieDetailsVO
 import com.flexath.themoviebookingapp.data.vos.movie.MovieVO
 import com.flexath.themoviebookingapp.data.vos.movie.cinema.CinemaVO
 import com.flexath.themoviebookingapp.data.vos.movie.cinema.ConfigVO
 import com.flexath.themoviebookingapp.data.vos.movie.SeatVO
 import com.flexath.themoviebookingapp.data.vos.movie.SnackCategoryVO
 import com.flexath.themoviebookingapp.data.vos.movie.SnackVO
-import com.flexath.themoviebookingapp.network.responses.PaymentListResponse
 import com.flexath.themoviebookingapp.data.vos.movie.PaymentVO
 import com.flexath.themoviebookingapp.data.vos.movie.confirmation.CheckoutBody
 import com.flexath.themoviebookingapp.data.vos.movie.confirmation.TicketCheckoutResponse
@@ -18,6 +18,8 @@ import com.flexath.themoviebookingapp.data.vos.movie.VideoResponse
 import com.flexath.themoviebookingapp.data.vos.movie.VideoVO
 import com.flexath.themoviebookingapp.network.responses.SeatingPlanResponse
 import com.flexath.themoviebookingapp.network.api.CinemaApi
+import com.flexath.themoviebookingapp.network.firebase.FirebaseApi
+import com.flexath.themoviebookingapp.network.firebase.RealtimeDatabaseFirebaseApiImpl
 import com.flexath.themoviebookingapp.network.responses.*
 import com.flexath.themoviebookingapp.network.utils.BASE_URL
 import com.flexath.themoviebookingapp.network.utils.BASE_URL_TMDB
@@ -31,6 +33,7 @@ object RetrofitDataAgentImpl : CinemaDataAgent {
 
     private var mCinemaApi: CinemaApi? = null
     private var mCinemaApiTwo: CinemaApi? = null
+    private val mFirebaseRealtime : FirebaseApi = RealtimeDatabaseFirebaseApiImpl
 
     init {
 
@@ -131,92 +134,44 @@ object RetrofitDataAgentImpl : CinemaDataAgent {
             })
     }
 
-    override fun getBanners(onSuccess: (List<BannerVO>) -> Unit, onFailure: (String) -> Unit) {
-        mCinemaApi?.getBanners()
-            ?.enqueue(object : Callback<MovieHomeBannerResponse> {
-                override fun onResponse(
-                    call: Call<MovieHomeBannerResponse>,
-                    response: Response<MovieHomeBannerResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val citiesList = response.body()?.data ?: listOf()
-                        onSuccess(citiesList)
-                    } else {
-                        onFailure("Don't make errors,Aung Thiha")
-                    }
-                }
-
-                override fun onFailure(call: Call<MovieHomeBannerResponse>, t: Throwable) {
-                    onFailure(t.message ?: "")
-                }
-
-            })
+    override fun getBanners(onSuccess: (List<BannersVO>) -> Unit, onFailure: (String) -> Unit) {
+        mFirebaseRealtime.getBanner(
+            onSuccess= onSuccess,
+            onFailure = onFailure
+        )
     }
 
     override fun getNowPlayingMovies(
         onSuccess: (List<MovieVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        mCinemaApi?.getNowPlayingMovies()
-            ?.enqueue(object : Callback<MovieHomeMovieListResponse> {
-                override fun onResponse(
-                    call: Call<MovieHomeMovieListResponse>,
-                    response: Response<MovieHomeMovieListResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val movieList = response.body()?.data ?: listOf()
-                        onSuccess(movieList)
-                    } else {
-                        onFailure("Don't make errors,Aung Thiha")
-                    }
-                }
-
-                override fun onFailure(call: Call<MovieHomeMovieListResponse>, t: Throwable) {
-                    onFailure(t.message ?: "")
-                }
-
-            })
+        mFirebaseRealtime.getMovieList(
+            onSuccess,onFailure
+        )
     }
 
     override fun getComingSoonMovies(
         onSuccess: (List<MovieVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        mCinemaApi?.getComingSoonMovies()
-            ?.enqueue(object : Callback<MovieHomeMovieListResponse> {
-                override fun onResponse(
-                    call: Call<MovieHomeMovieListResponse>,
-                    response: Response<MovieHomeMovieListResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val movieList = response.body()?.data ?: listOf()
-                        onSuccess(movieList)
-                    } else {
-                        onFailure("Don't make errors,Aung Thiha")
-                    }
-                }
-
-                override fun onFailure(call: Call<MovieHomeMovieListResponse>, t: Throwable) {
-                    onFailure(t.message ?: "")
-                }
-
-            })
+        mFirebaseRealtime.comingSoonList(
+            onSuccess,onFailure
+        )
     }
 
     override fun getMovieDetailsById(
         movieId: String,
-        onSuccess: (MovieVO) -> Unit,
+        onSuccess: (MovieDetailsVO) -> Unit,
         onFailure: (String) -> Unit
     ) {
         mCinemaApi?.getMovieDetailsById(movieId)
-            ?.enqueue(object : Callback<MovieDetailResponse> {
+            ?.enqueue(object : Callback<MovieDetailsVO> {
                 override fun onResponse(
-                    call: Call<MovieDetailResponse>,
-                    response: Response<MovieDetailResponse>
+                    call: Call<MovieDetailsVO>,
+                    response: Response<MovieDetailsVO>
                 ) {
                     if (response.isSuccessful) {
-                        val movie = response.body()?.data
-                        movie?.let {
+                        response.body()?.let {
                             onSuccess(it)
                         }
                     } else {
@@ -224,7 +179,7 @@ object RetrofitDataAgentImpl : CinemaDataAgent {
                     }
                 }
 
-                override fun onFailure(call: Call<MovieDetailResponse>, t: Throwable) {
+                override fun onFailure(call: Call<MovieDetailsVO>, t: Throwable) {
                     onFailure(t.message ?: "")
                 }
 
@@ -258,52 +213,25 @@ object RetrofitDataAgentImpl : CinemaDataAgent {
     }
 
     override fun getCinemaTimeSlots(
+        movieName: String,
         authorization: String,
         date: String,
         onSuccess: (List<CinemaVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        mCinemaApi?.getCinemaTimeSlots(authorization, date)
-            ?.enqueue(object : Callback<CinemaListResponse> {
-                override fun onResponse(
-                    call: Call<CinemaListResponse>,
-                    response: Response<CinemaListResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val cinemaList = response.body()?.data ?: listOf()
-                        onSuccess(cinemaList)
-                    } else {
-                        onFailure("Timeslot response error")
-                    }
-                }
-
-                override fun onFailure(call: Call<CinemaListResponse>, t: Throwable) {
-                    onFailure(t.message ?: "")
-                }
-
-            })
+        mFirebaseRealtime.getCinemaTimeSlots(
+            movieName,
+            date,
+            onSuccess = onSuccess,
+            onFailure= onFailure
+        )
     }
 
     override fun getCinemaConfig(onSuccess: (List<ConfigVO>) -> Unit, onFailure: (String) -> Unit) {
-        mCinemaApi?.getCinemaConfig()
-            ?.enqueue(object : Callback<ConfigListResponse> {
-                override fun onResponse(
-                    call: Call<ConfigListResponse>,
-                    response: Response<ConfigListResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val configList = response.body()?.data ?: listOf()
-                        onSuccess(configList)
-                    } else {
-                        onFailure("Cinema Config response failed")
-                    }
-                }
-
-                override fun onFailure(call: Call<ConfigListResponse>, t: Throwable) {
-                    onFailure(t.message ?: "")
-                }
-
-            })
+        mFirebaseRealtime.getConfig(
+            onSuccess = onSuccess,
+            onFailure = onFailure
+        )
     }
 
     override fun getCinemaInfo(
@@ -364,25 +292,9 @@ object RetrofitDataAgentImpl : CinemaDataAgent {
         onSuccess: (List<SnackCategoryVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        mCinemaApi?.getSnackCategory(authorization)
-            ?.enqueue(object : Callback<SnackCategoryResponse> {
-                override fun onResponse(
-                    call: Call<SnackCategoryResponse>,
-                    response: Response<SnackCategoryResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val snackCategoryList = response.body()?.data ?: listOf()
-                        onSuccess(snackCategoryList)
-                    } else {
-                        onFailure("Don't make errors,Aung Thiha")
-                    }
-                }
-
-                override fun onFailure(call: Call<SnackCategoryResponse>, t: Throwable) {
-                    onFailure(t.message ?: "")
-                }
-
-            })
+        mFirebaseRealtime.getSnackCategory(
+            onSuccess,onFailure
+        )
     }
 
     override fun getSnackByCategory(
@@ -391,25 +303,11 @@ object RetrofitDataAgentImpl : CinemaDataAgent {
         onSuccess: (List<SnackVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        mCinemaApi?.getSnackByCategory(authorization, categoryId)
-            ?.enqueue(object : Callback<SnackListResponse> {
-                override fun onResponse(
-                    call: Call<SnackListResponse>,
-                    response: Response<SnackListResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val snackList = response.body()?.data ?: listOf()
-                        onSuccess(snackList)
-                    } else {
-                        onFailure("Don't make errors,Aung Thiha")
-                    }
-                }
-
-                override fun onFailure(call: Call<SnackListResponse>, t: Throwable) {
-                    onFailure(t.message ?: "")
-                }
-
-            })
+        mFirebaseRealtime.getSnackByCategoryId(
+            categoryId,
+            onSuccess = onSuccess,
+            onFailure = onFailure
+        )
     }
 
     override fun getPaymentTypes(
@@ -417,25 +315,10 @@ object RetrofitDataAgentImpl : CinemaDataAgent {
         onSuccess: (List<PaymentVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        mCinemaApi?.getPaymentTypes(authorization)
-            ?.enqueue(object : Callback<PaymentListResponse> {
-                override fun onResponse(
-                    call: Call<PaymentListResponse>,
-                    response: Response<PaymentListResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val paymentList = response.body()?.data ?: listOf()
-                        onSuccess(paymentList)
-                    } else {
-                        onFailure("Don't make errors,Aung Thiha")
-                    }
-                }
-
-                override fun onFailure(call: Call<PaymentListResponse>, t: Throwable) {
-                    onFailure(t.message ?: "")
-                }
-
-            })
+        mFirebaseRealtime.getPaymentTypes(
+            onSuccess,
+            onFailure
+        )
     }
 
     override fun getTicketCheckout(

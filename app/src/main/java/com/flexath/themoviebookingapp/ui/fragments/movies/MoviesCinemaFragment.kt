@@ -81,6 +81,10 @@ class MoviesCinemaFragment : Fragment(), CinemaListViewHolderDelegate {
 
         tvCityNameExtraHomeCinema.text = args.argCityName
 
+        btnBackMoviesCinema.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         btnSearchMoviesCinema.setOnClickListener {
             llLocationMoviesCinema.visibility = View.GONE
             btnSearchMoviesCinema.visibility = View.GONE
@@ -136,17 +140,20 @@ class MoviesCinemaFragment : Fragment(), CinemaListViewHolderDelegate {
     }
 
     private fun requestData(date: String) {
-        mCinemaModel.getCinemaTimeSlots(
-            "Bearer ${mCinemaModel.getOtp(201)?.token}",
-            date,
-            onSuccess = {
-                mCinemaList = it
-                cinemaListViewPod.setNewData(it)
-            },
-            onFailure = {
-                Toast.makeText(requireContext(), "This function", Toast.LENGTH_SHORT).show()
-            }
-        )
+        mMovieName?.let {
+            mCinemaModel.getCinemaTimeSlots(
+                it,
+                "Bearer 18112|dp0oclqVIL57JvmormSokXYXsuEndQX0bhIVMswr",
+                date,
+                onSuccess = {
+                    mCinemaList = it
+                    cinemaListViewPod.setNewData(it)
+                },
+                onFailure = {
+                    Toast.makeText(requireContext(), "Network call error", Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
     }
 
     override fun onClickCinemaSeeDetails(cinemaId: Int) {
@@ -181,9 +188,13 @@ class MoviesCinemaFragment : Fragment(), CinemaListViewHolderDelegate {
 
     override fun getCinemaId(cinemaId: Int?) {
         cinemaId?.let { id ->
-            mCinemaModel.getCinemaInfo(id)?.also { cinemaInfo ->
-                mCinemaLocation = cinemaInfo.address
-            }
+            mCinemaModel.getCinemaInfo(
+                id,
+                onSuccess = {
+                    mCinemaLocation = it.address
+            }, onFailure = {
+
+            })
         }
     }
 

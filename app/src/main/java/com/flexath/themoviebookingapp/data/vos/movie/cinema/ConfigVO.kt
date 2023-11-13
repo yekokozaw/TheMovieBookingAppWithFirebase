@@ -6,23 +6,22 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.flexath.themoviebookingapp.persistence.typeconverters.TimeslotColorTypeConverter
 import com.flexath.themoviebookingapp.persistence.typeconverters.ValueAnyTypeConverter
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 
 @Entity("config_table")
 @TypeConverters(
     ValueAnyTypeConverter::class
 )
+@IgnoreExtraProperties
 data class ConfigVO(
 
-    @SerializedName("id")
     @PrimaryKey
-    val id: Int?,
+    var id: Int? = 0,
 
-    @SerializedName("key")
     @ColumnInfo("key")
-    val key: String?,
+    var key: String? = "",
 
-    @SerializedName("value")
     @ColumnInfo("value")
-    val value: Any?
+    var value: Any? = Any()
 )

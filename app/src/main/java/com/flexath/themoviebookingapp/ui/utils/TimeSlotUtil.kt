@@ -23,7 +23,7 @@ class TimeSlotUtil {
         var dayOfWeekVarOne = 0
         var monthVarOne = 0
 
-        for (i in 1..14) {
+        for (i in 1..3) {
             dayOfWeekVarOne = calendar.get(Calendar.DAY_OF_WEEK)
             val dayOfWeek = setUpDayOfWeek(dayOfWeekVarOne)
 

@@ -1,6 +1,7 @@
 package com.flexath.themoviebookingapp.ui.adapters.movies
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,9 @@ class CinemasMoviesCinemaAdapter(private val delegate:CinemaListViewHolderDelega
     @SuppressLint("NotifyDataSetChanged")
     fun setData(cinemaList:List<CinemaVO>) {
         mCinemaList = cinemaList
+        for (cinema in cinemaList){
+            Log.d("timeslot",cinema.timeslots.toString())
+        }
         notifyDataSetChanged()
     }
 }

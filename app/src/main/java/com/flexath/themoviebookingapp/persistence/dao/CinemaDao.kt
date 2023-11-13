@@ -4,8 +4,10 @@ import androidx.room.*
 import com.flexath.themoviebookingapp.data.vos.location.CitiesVO
 import com.flexath.themoviebookingapp.data.vos.movie.BannerVO
 import com.flexath.themoviebookingapp.data.vos.movie.CinemaInfoVO
+import com.flexath.themoviebookingapp.data.vos.movie.MovieDetailsVO
 import com.flexath.themoviebookingapp.data.vos.movie.MovieVO
 import com.flexath.themoviebookingapp.data.vos.movie.cinema.ConfigVO
+import com.flexath.themoviebookingapp.data.vos.signin.TokenVO
 import com.flexath.themoviebookingapp.network.responses.OTPResponse
 import com.flexath.themoviebookingapp.data.vos.ticket.TicketInformation
 
@@ -33,6 +35,12 @@ interface CinemaDao {
     @Query("SELECT * FROM banners_table")
     fun getBanners():List<BannerVO>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addToken(token : TokenVO)
+
+    @Query("SELECT * FROM token_table")
+    fun getToken() : TokenVO
+
     // Movie Home Screen - Now Showing or Coming Soon
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovies(movies:List<MovieVO>)
@@ -44,11 +52,11 @@ interface CinemaDao {
     fun getMoviesByType(type:String):List<MovieVO>
 
     // Movie Detail Screen
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertSingleMovie(movie: MovieVO?)
-
-    @Query("SELECT * FROM movie_table WHERE id = :movieId")
-    fun getMovieById(movieId:Int):MovieVO?
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    fun insertSingleMovie(movie: MovieDetailsVO?)
+//
+//    @Query("SELECT * FROM movie_table WHERE id = :movieId")
+//    fun getMovieById(movieId:Int):MovieDetailsVO?
 
     // Movie Cinema Screen
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -67,6 +75,10 @@ interface CinemaDao {
     @Transaction
     @Query("DELETE FROM cities_table")
     fun deleteAllFromCitiesVO()
+
+    @Transaction
+    @Query("DELETE FROM token_table")
+    fun deleteToken()
 
     @Transaction
     @Query("DELETE FROM otp_table")
@@ -96,6 +108,7 @@ interface CinemaDao {
     fun deleteAllEntities(){
 //        deleteAllFromCitiesVO()
         deleteAllFromOTP()
+        deleteToken()
         deleteAllFromBannerVO()
         deleteAllFromMovieVO()
         deleteAllFromConfigVO()
@@ -110,6 +123,6 @@ interface CinemaDao {
     @Query("SELECT * FROM ticket_table")
     fun getAllTickets():List<TicketInformation>
 
-    @Query("DELETE FROM ticket_table WHERE id = :ticketId")
+    @Query("DELETE FROM ticket_table WHERE qrcode = :ticketId")
     fun deleteTicket(ticketId:Int)
 }

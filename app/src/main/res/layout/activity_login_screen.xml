@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,8 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:paddingBottom="@dimen/margin_49dp">
+        android:background="@color/colorPrimary">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/colLoginLogo"
@@ -19,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_xxlarge">
-
+            
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivLoginLogo"
                 android:layout_width="@dimen/width_logo"
@@ -39,206 +38,149 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvVerifyPhoneNumberLabel"
+            android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/colLoginLogo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_40dp"
-            android:fontFamily="@font/dm_sans"
-            android:gravity="center"
-            android:text="@string/lbl_verify_your_phone_number_login_screen"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="Login Here"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_small_2x" />
+            android:textSize="@dimen/text_heading_1x" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvSixDigitLabel"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/ivGmailLogo"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/gmail_logo"
+            android:layout_below="@id/tvLogin"
+            android:layout_marginStart="@dimen/margin_medium_2"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etEmailAddress"
+            android:layout_width="@dimen/width_251dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvVerifyPhoneNumberLabel"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_10dp"
-            android:fontFamily="@font/dm_sans"
-            android:gravity="center"
-            android:text="@string/lbl_verify_6_digit_txt_login_screen"
-            android:textColor="@color/colorSecondaryText2"
-            android:textSize="@dimen/text_regular" />
+            android:layout_below="@id/tvLogin"
+            android:layout_marginStart="@dimen/margin_medium_3_2x"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:cursorVisible="true"
+            android:hint="Enter Your Email Address"
+            android:textColorHint="@color/colorSecondaryText2"
+            app:boxBackgroundColor="@color/colorPrimary"
+            app:boxStrokeColor="@color/white"
+            app:boxStrokeErrorColor="@color/colorPrimary"
+            app:boxStrokeWidth="@dimen/margin_1dp"
+            app:errorContentDescription="You type wrong number"
+            app:hintTextColor="@color/colorPrimary">
 
-        <RelativeLayout
-            android:id="@+id/rlCountryCode"
-            android:layout_width="@dimen/margin_347dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvSixDigitLabel"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_medium_3_4x">
-
-            <LinearLayout
-                android:id="@+id/linearLayoutCountryCode"
-                android:layout_width="@dimen/margin_76dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvCountryCode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter"
-                    android:gravity="center"
-                    android:letterSpacing="-0.03"
-                    android:text="@string/country_code_login_screen"
-                    android:textColor="@color/colorSecondaryText2"
-                    android:textSize="@dimen/text_small" />
-
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/ccpLogin"
-                    android:layout_width="@dimen/width_country_code"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_medium"
-                    android:gravity="center|start"
-                    app:ccpDialog_background="@color/colorPrimary"
-                    app:ccpDialog_showCloseIcon="true"
-                    app:ccpDialog_textColor="@color/white"
-                    app:ccp_arrowColor="@color/colorPrimaryLight"
-                    app:ccp_arrowSize="@dimen/margin_30dp"
-                    app:ccp_autoDetectCountry="true"
-                    app:ccp_contentColor="@color/white"
-                    app:ccp_defaultNameCode="+95"
-                    app:ccp_internationalFormattingOnly="true"
-                    app:ccp_padding="@dimen/margin_small"
-                    app:ccp_rememberLastSelection="true"
-                    app:ccp_showArrow="true"
-                    app:ccp_showFlag="false"
-                    app:ccp_showFullName="false"
-                    app:ccp_showNameCode="false"
-                    app:ccp_showPhoneCode="true"
-                    app:ccp_textGravity="LEFT"
-                    app:ccp_textSize="@dimen/text_regular_2x" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1.5dp"
-                    android:background="@color/white" />
-
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etMobileNumber"
-                android:layout_width="@dimen/width_251dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:cursorVisible="true"
-                android:gravity="bottom"
-                android:hint="@string/lbl_mobile_number_login_screen"
-                android:textColorHint="@color/colorSecondaryText2"
-                app:boxBackgroundColor="@color/colorPrimary"
-                app:boxStrokeColor="@color/white"
-                app:boxStrokeErrorColor="@color/colorPrimary"
-                app:boxStrokeWidth="@dimen/margin_1dp"
-                app:errorContentDescription="You type wrong number"
-                app:hintTextColor="@color/colorPrimary">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical|start"
-                    android:inputType="phone"
-                    android:textColor="@color/white"
-                    android:textCursorDrawable="@color/white"
-                    android:textSize="@dimen/text_regular_2x" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <View
-                android:id="@+id/outlineMobileNumber"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_1dp"
-                android:layout_alignStart="@+id/etMobileNumber"
-                android:layout_alignParentBottom="true"
-                android:background="@color/white" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rlVerifyPhoneNumber"
-            android:layout_width="@dimen/width_357dp"
-            android:layout_height="@dimen/height_51dp"
-            android:layout_below="@+id/rlCountryCode"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_50dp"
-            android:layout_marginStart="@dimen/margin_30dp"
-            android:layout_marginEnd="@dimen/margin_30dp"
-            android:background="@drawable/btn_verify_phone_number_rounded_corner"
-            android:gravity="center">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_verify_your_phone_number_login_screen"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:gravity="center_vertical|start"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textCursorDrawable="@color/white"
                 android:textSize="@dimen/text_regular_2x" />
 
-        </RelativeLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvOrLabel"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/ivPasswordLogo"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="55dp"
+            android:src="@drawable/password_logo"
+            android:layout_below="@id/ivGmailLogo"
+            android:layout_marginStart="@dimen/margin_medium_2"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etPassword"
+            android:layout_width="@dimen/width_251dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rlVerifyPhoneNumber"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_25dp"
-            android:fontFamily="@font/inter"
-            android:text="@string/lbl_or"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_regular_2x" />
+            android:layout_below="@id/etEmailAddress"
+            android:layout_marginStart="@dimen/margin_medium_3_2x"
+            android:layout_marginTop="@dimen/margin_large"
+            android:cursorVisible="true"
+            android:hint="Enter Your Password"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorGrey"
+            android:textColorHint="@color/colorSecondaryText2"
+            app:boxBackgroundColor="@color/colorPrimary"
+            app:boxStrokeColor="@color/white"
+            app:boxStrokeErrorColor="@color/colorPrimary"
+            app:boxStrokeWidth="@dimen/margin_1dp"
+            app:errorContentDescription="You type wrong number"
+            app:hintTextColor="@color/colorPrimary">
 
-        <RelativeLayout
-            android:id="@+id/rlVerifyGoogleAccount"
-            android:layout_width="@dimen/width_357dp"
-            android:layout_height="@dimen/height_51dp"
-            android:layout_below="@+id/tvOrLabel"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="@dimen/margin_25dp"
-            android:layout_marginEnd="@dimen/margin_30dp"
-            android:background="@drawable/btn_continue_with_google_rounded_corner"
-            android:gravity="center_vertical">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/width_25dp"
-                android:layout_height="@dimen/height_25dp"
-                android:layout_marginStart="@dimen/margin_80dp"
-                android:layout_marginTop="@dimen/margin_13dp"
-                android:layout_marginEnd="@dimen/margin_10dp"
-                android:layout_marginBottom="@dimen/margin_13dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/google_icon" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_115dp"
-                android:layout_marginTop="@dimen/margin_medium_2"
-                android:layout_marginBottom="@dimen/margin_medium_2"
-                android:fontFamily="@font/inter"
-                android:text="@string/btn_continue_with_google_login_screen"
-                android:textColor="@color/black"
+                android:gravity="center_vertical|start"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textCursorDrawable="@color/white"
                 android:textSize="@dimen/text_regular_2x" />
 
-        </RelativeLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Login"
+            app:cornerRadius="@dimen/margin_medium" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvForgetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rlVerifyGoogleAccount"
+            android:text="Forgot password?"
+            android:textColor="@color/colorAccent"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_94dp"
-            android:gravity="center"
-            android:text="@string/by_clicking_login_screen"
-            android:textColor="#4A4A4B"
-            android:textSize="@dimen/text_small" />
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_below="@id/btnLogin"/>
 
     </RelativeLayout>
 
-</ScrollView>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDontHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tvTermsAndCondition"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="@dimen/margin_medium_3"
+        android:text="Don't have an account?"
+        android:textColor="@color/colorGrey" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tvDontHaveAccount"
+        android:layout_toEndOf="@id/tvDontHaveAccount"
+        android:text="Register"
+        android:layout_marginStart="@dimen/margin_small"
+        android:textColor="@color/colorAccent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTermsAndCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_medium_2"
+        android:gravity="center"
+        android:text="@string/by_clicking_login_screen"
+        android:textColor="#4A4A4B"
+        android:textSize="@dimen/text_small" />
+
+
+</RelativeLayout>

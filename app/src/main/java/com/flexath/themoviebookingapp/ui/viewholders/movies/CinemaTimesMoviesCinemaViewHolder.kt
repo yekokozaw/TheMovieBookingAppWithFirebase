@@ -18,6 +18,8 @@ import com.flexath.themoviebookingapp.ui.delegates.CinemaListViewHolderDelegate
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 import kotlinx.android.synthetic.main.view_holder_movies_cinema_cinema_times_list.view.*
+import java.util.Calendar
+import java.util.TimeZone
 
 class CinemaTimesMoviesCinemaViewHolder(
     itemView: View,
@@ -28,8 +30,9 @@ class CinemaTimesMoviesCinemaViewHolder(
     private var mCinemaModel: CinemaModel = CinemaModelImpl
     private var mTimeslot: TimeslotVO? = null
 
+    private var mTimeDifferentInMills : Long? = null
     init {
-        setUpOnClickListener()
+        //setUpOnClickListener()
         setUpOnLongClickListener()
     }
 
@@ -43,6 +46,35 @@ class CinemaTimesMoviesCinemaViewHolder(
             newConfigList.add(timeslotColorVO)
         }
         return newConfigList
+    }
+
+    private fun cinemaAvailable(){
+        var cinemaStartTime = mTimeslot?.start_time
+
+        val timezone = TimeZone.getTimeZone("Asia/Yangon")
+        val parts = cinemaStartTime?.split(":")
+        val hours = parts?.get(0)?.toInt()
+        val minutes = parts?.get(1)?.toInt()
+
+        val currentTime = Calendar.getInstance()
+        val cinemaStartTimeCalendar = Calendar.getInstance()
+        if (hours != null) {
+            cinemaStartTimeCalendar.set(Calendar.HOUR_OF_DAY, hours)
+        }
+        if (minutes != null) {
+            cinemaStartTimeCalendar.set(Calendar.MINUTE, minutes)
+        }
+        cinemaStartTimeCalendar.set(Calendar.SECOND, 0)
+        if (hours != null) {
+            cinemaStartTimeCalendar.set(Calendar.HOUR_OF_DAY, hours)
+        }
+        if (minutes != null) {
+            cinemaStartTimeCalendar.set(Calendar.MINUTE, minutes)
+        }
+        cinemaStartTimeCalendar.set(Calendar.SECOND, 0)
+
+        val timeDifferenceInMillis = cinemaStartTimeCalendar.timeInMillis - currentTime.timeInMillis
+        mTimeDifferentInMills = timeDifferenceInMillis
     }
 
     private fun getTimeslotColor(timeslot: TimeslotVO) : String {
@@ -72,23 +104,49 @@ class CinemaTimesMoviesCinemaViewHolder(
 
     private fun setUpOnLongClickListener() {
         itemView.setOnLongClickListener {
-            delegate.onClickCinemaTimes(mTimeslot?.cinemaDayTimeslotId ?: 0, mTimeslot?.start_time)
-            true
+            if (mTimeslot!!.start_date.equals("tomorrow")){
+                delegate.onClickCinemaTimes(mTimeslot?.cinemaDayTimeslotId ?: 0, mTimeslot?.start_time)
+                true
+            }else{
+                if(mTimeDifferentInMills!! <1*60*1000){
+                    Toast.makeText(itemView.context,"Booking is not available.Try another one",Toast.LENGTH_SHORT).show()
+                    false
+                }else{
+                    delegate.onClickCinemaTimes(mTimeslot?.cinemaDayTimeslotId ?: 0, mTimeslot?.start_time)
+                    true
+                }
+            }
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun bindData(timeslot: TimeslotVO) {
         mTimeslot = timeslot
+        if(mTimeslot!!.start_date.equals("tomorrow")){
+
+        }else{
+            cinemaAvailable()
+        }
+
+        Log.d("cinema", mTimeslot!!.start_time.toString())
         itemView.tvStartTimeMovieCinemaTimeslot.text = timeslot.start_time
-
-        val color = getTimeslotColor(timeslot)
-
         val shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
         shape.setColor(itemView.resources.getColor(R.color.colorPrimary,null))
         shape.cornerRadius = itemView.resources.getDimension(R.dimen.margin_small)
-        shape.setStroke(1,Color.parseColor(color))
-        itemView.itemCinemaTimes.background = shape
+
+        if (mTimeslot!!.start_date.equals("tomorrow")){
+            shape.setStroke(1,Color.parseColor("#00FFA3"))
+            itemView.itemCinemaTimes.background = shape
+        }else{
+            if(mTimeDifferentInMills!! < 1*60*1000){
+                shape.setStroke(1,Color.parseColor("#ed092f"))
+                itemView.itemCinemaTimes.background = shape
+            }
+            else{
+                shape.setStroke(1,Color.parseColor("#00FFA3"))
+                itemView.itemCinemaTimes.background = shape
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@
 
     <include
         android:id="@+id/appBarCinemaHome"
+        android:visibility="gone"
         layout="@layout/layout_app_bar_cinema_home"/>
 
     <LinearLayout
@@ -42,7 +43,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:fontFamily="@font/inter_medium"
                 android:text="@string/lbl_available"
                 android:textColor="@color/colorGreen" />
 
@@ -68,7 +68,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:fontFamily="@font/inter_medium"
                 android:text="@string/lbl_filling_fast"
                 android:textColor="@color/colorOrange" />
 
@@ -92,7 +91,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:fontFamily="@font/inter_medium"
                 android:text="@string/lbl_almost_full"
                 android:textColor="@color/colorPurple" />
 

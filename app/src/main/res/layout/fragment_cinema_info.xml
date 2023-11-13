@@ -18,7 +18,7 @@
         <FrameLayout
             android:id="@+id/flVideoViewCinemaInfo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="170dp"
             android:layout_below="@+id/appBarCinemaInfo">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,14 +36,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <VideoView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/vvVideoCinemaInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="189dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/banner_pop_corn"
                     android:saveEnabled="true" />
 
             </RelativeLayout>
@@ -62,7 +60,7 @@
             android:fontFamily="@font/inter_semibold"
             tools:text="JCGV : Junction City"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_regular_2x" />
+            android:textSize="@dimen/text_regular_3x" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLocationCinemaInfo"
@@ -71,12 +69,34 @@
             android:layout_below="@+id/tvCinemaNameCinemaInfo"
             android:layout_alignParentStart="true"
             android:layout_marginStart="@dimen/margin_medium_4_n"
-            android:layout_marginTop="@dimen/margin_15dp"
+            android:layout_marginTop="@dimen/margin_medium_3"
             android:layout_marginEnd="@dimen/margin_120dp"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/inter"
             tools:text="Q5H3+JPP, Corner of, Bogyoke Lann, Yangon"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_18sp" />
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCinemaEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:layout_below="@id/tvLocationCinemaInfo"
+            android:text="user@gmail.com"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCinemaPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_below="@id/tvCinemaEmail"
+            android:text="09961002369"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnLocationCinemaInfo"
@@ -96,6 +116,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="@dimen/margin_medium_4_n"
             android:layout_marginTop="@dimen/margin_40dp"
+            android:visibility="gone"
             android:fontFamily="@font/inter_semibold"
             android:text="@string/lbl_facilities"
             android:textColor="@color/white"
@@ -117,7 +138,7 @@
             android:layout_below="@+id/chipGroupFacilityCinemaInfo"
             android:layout_alignParentStart="true"
             android:layout_marginStart="@dimen/margin_medium_4_n"
-            android:layout_marginTop="@dimen/margin_40dp"
+            android:layout_marginTop="110dp"
             android:fontFamily="@font/inter_semibold"
             android:text="@string/lbl_safety"
             android:textColor="@color/white"
@@ -131,6 +152,7 @@
             android:layout_marginStart="@dimen/margin_medium_4_n"
             android:layout_marginTop="@dimen/margin_medium_3"
             android:layout_marginEnd="@dimen/margin_medium_4_n"
+            android:layout_marginBottom="@dimen/margin_large"
             android:orientation="vertical" />
 
     </RelativeLayout>

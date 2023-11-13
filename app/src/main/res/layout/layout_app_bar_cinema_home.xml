@@ -24,7 +24,6 @@
         android:layout_gravity="center_vertical|start"
         android:layout_marginStart="@dimen/margin_62dp"
         android:gravity="center_vertical|start"
-        android:fontFamily="@font/inter"
         android:letterSpacing="-0.02"
         android:text="Yangon"
         android:textColor="@color/white"

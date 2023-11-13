@@ -22,19 +22,11 @@
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/profile_blur_background" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="@dimen/margin_30dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/button_login_profile" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/margin_30dp"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/profile_image" />
 
@@ -44,28 +36,92 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/flProfile"
+            android:layout_marginTop="@dimen/margin_large"
             android:orientation="vertical"
-            android:paddingTop="@dimen/margin_card_medium"
             android:paddingStart="@dimen/margin_medium_4_n"
+            android:paddingTop="@dimen/margin_card_medium"
             android:paddingEnd="@dimen/margin_medium_4_n">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnPurchaseHistoryProfileHome"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_10dp"
-                android:background="@color/colorPrimary"
-                android:drawableStart="@drawable/icon_purchase_history"
-                android:drawableEnd="@drawable/right_big_arrow"
-                android:drawablePadding="@dimen/margin_10dp"
-                android:fontFamily="@font/inter_semibold"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/margin_large"
-                android:paddingBottom="@dimen/margin_large"
-                android:text="@string/lbl_purchase_history"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_17sp" />
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:fontFamily="@font/dm_sans"
+                    android:text="Username: "
+                    android:textColor="@color/colorAccent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:fontFamily="@font/inter_thin"
+                    android:text="Ye Ko Zaw"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:fontFamily="@font/dm_sans"
+                    android:text="Email: "
+                    android:textColor="@color/colorAccent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvUserEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:fontFamily="@font/inter_thin"
+                    android:text="developer@gmail.com"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:fontFamily="@font/dm_sans"
+                    android:text="Phone : "
+                    android:textColor="@color/colorAccent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvUserPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:fontFamily="@font/inter_thin"
+                    android:text="09961002369"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -73,96 +129,22 @@
                 android:background="#1AFFFFFF" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnOfferProfileHome"
+                android:id="@+id/btnPrivacyPolicy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
                 android:layout_marginEnd="@dimen/margin_10dp"
                 android:background="@color/colorPrimary"
-                android:drawableStart="@drawable/icon_offer"
+                android:drawableStart="@drawable/baseline_privacy_tip_24dp"
                 android:drawableEnd="@drawable/right_big_arrow"
                 android:drawablePadding="@dimen/margin_10dp"
-                android:fontFamily="@font/inter_semibold"
                 android:gravity="center_vertical"
-                android:paddingTop="@dimen/margin_large"
-                android:paddingBottom="@dimen/margin_large"
-                android:text="@string/lbl_offer"
+                android:paddingTop="@dimen/margin_medium_3"
+                android:paddingBottom="@dimen/margin_medium_3"
+                android:text="Privacy Policy"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_17sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#1AFFFFFF" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnGiftCardProfileHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_10dp"
-                android:background="@color/colorPrimary"
-                android:drawableStart="@drawable/icon_gift_card"
-                android:drawableEnd="@drawable/right_big_arrow"
-                android:drawablePadding="@dimen/margin_10dp"
-                android:fontFamily="@font/inter_semibold"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/margin_large"
-                android:paddingBottom="@dimen/margin_large"
-                android:text="@string/lbl_gift_card"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_17sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#1AFFFFFF" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLocationProfileHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_10dp"
-                android:background="@color/colorPrimary"
-                android:drawableStart="@drawable/icon_location_profile"
-                android:drawableEnd="@drawable/right_big_arrow"
-                android:drawablePadding="@dimen/margin_10dp"
-                android:fontFamily="@font/inter_semibold"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/margin_large"
-                android:paddingBottom="@dimen/margin_large"
-                android:text="@string/lbl_location"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_17sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#1AFFFFFF" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnPaymentProfileHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_10dp"
-                android:background="@color/colorPrimary"
-                android:drawableStart="@drawable/icon_payment"
-                android:drawableEnd="@drawable/right_big_arrow"
-                android:drawablePadding="@dimen/margin_10dp"
-                android:fontFamily="@font/inter_semibold"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/margin_large"
-                android:paddingBottom="@dimen/margin_large"
-                android:text="@string/lbl_payment"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_17sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#1AFFFFFF" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnHelpAndSupportProfileHome"
@@ -173,10 +155,9 @@
                 android:drawableStart="@drawable/icon_help_and_support"
                 android:drawableEnd="@drawable/right_big_arrow"
                 android:drawablePadding="@dimen/margin_10dp"
-                android:fontFamily="@font/inter_semibold"
                 android:gravity="center_vertical"
-                android:paddingTop="@dimen/margin_large"
-                android:paddingBottom="@dimen/margin_large"
+                android:paddingTop="@dimen/margin_medium_3"
+                android:paddingBottom="@dimen/margin_medium_3"
                 android:text="@string/lbl_help_and_support"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -192,11 +173,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_10dp"
+                android:layout_marginBottom="@dimen/margin_large"
                 android:background="@color/colorPrimary"
                 android:drawableStart="@drawable/icon_log_out"
                 android:drawableEnd="@drawable/right_big_arrow"
                 android:drawablePadding="@dimen/margin_10dp"
-                android:fontFamily="@font/inter_semibold"
                 android:gravity="center_vertical"
                 android:paddingTop="@dimen/margin_large"
                 android:paddingBottom="@dimen/margin_large"

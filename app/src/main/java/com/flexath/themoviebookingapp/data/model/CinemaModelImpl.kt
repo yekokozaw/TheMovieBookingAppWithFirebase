@@ -12,9 +12,16 @@ import com.flexath.themoviebookingapp.data.vos.movie.PaymentVO
 import com.flexath.themoviebookingapp.data.vos.movie.confirmation.CheckoutBody
 import com.flexath.themoviebookingapp.data.vos.movie.confirmation.TicketCheckoutVO
 import com.flexath.themoviebookingapp.data.vos.movie.VideoVO
+import com.flexath.themoviebookingapp.data.vos.signin.TokenVO
+import com.flexath.themoviebookingapp.data.vos.signin.UserVO
+import com.flexath.themoviebookingapp.data.vos.ticket.BookingVO
 import com.flexath.themoviebookingapp.data.vos.ticket.TicketInformation
 import com.flexath.themoviebookingapp.network.dataagents.CinemaDataAgent
 import com.flexath.themoviebookingapp.network.dataagents.RetrofitDataAgentImpl
+import com.flexath.themoviebookingapp.network.firebase.CloudFirestoreFirebaseApi
+import com.flexath.themoviebookingapp.network.firebase.CloudFirestoreFirebseApiImpl
+import com.flexath.themoviebookingapp.network.firebase.FirebaseApi
+import com.flexath.themoviebookingapp.network.firebase.RealtimeDatabaseFirebaseApiImpl
 import com.flexath.themoviebookingapp.network.responses.LogoutResponse
 import com.flexath.themoviebookingapp.network.responses.OTPResponse
 import com.flexath.themoviebookingapp.persistence.CinemaRoomDatabase
@@ -23,8 +30,18 @@ object CinemaModelImpl : CinemaModel {
 
     private val mMovieDataAgent: CinemaDataAgent = RetrofitDataAgentImpl
     private var mCinemaDatabase: CinemaRoomDatabase? = null
-    private var mMovie: MovieVO? = null
+    private var mMovie: MovieDetailsVO? = null
     private var snackList: MutableList<SnackVO> = mutableListOf()
+    override var mFirebaseApi: FirebaseApi = RealtimeDatabaseFirebaseApiImpl
+    override var mCloudFirestoreApi: CloudFirestoreFirebaseApi = CloudFirestoreFirebseApiImpl
+
+    override fun addUser(user: UserVO) {
+        mCloudFirestoreApi.addUser(user)
+    }
+
+    override fun getUsers(onSuccess: (users: List<UserVO>) -> Unit, onFailure: (String) -> Unit) {
+        mCloudFirestoreApi.getUsers(onSuccess,onFailure)
+    }
 
     fun initCinemaDatabase(context: Context) {
         mCinemaDatabase = CinemaRoomDatabase.getDBInstance(context)
@@ -67,11 +84,14 @@ object CinemaModelImpl : CinemaModel {
     }
 
     override fun getOtp(code: Int) = mCinemaDatabase?.getDao()?.getSignInInformation(code)
+    override fun getToken() = mCinemaDatabase?.getDao()?.getToken()
 
-    override fun getBanners(onSuccess: (List<BannerVO>) -> Unit, onFailure: (String) -> Unit) {
-        onSuccess(mCinemaDatabase?.getDao()?.getBanners() ?: listOf())
+    override fun addToken(token: TokenVO) {
+        mCinemaDatabase?.getDao()?.addToken(token)
+    }
+
+    override fun getBanners(onSuccess: (List<BannersVO>) -> Unit, onFailure: (String) -> Unit) {
         mMovieDataAgent.getBanners(onSuccess = {
-            mCinemaDatabase?.getDao()?.insertBanner(it)
             onSuccess(it)
         }, onFailure = onFailure)
     }
@@ -108,18 +128,21 @@ object CinemaModelImpl : CinemaModel {
 
     override fun getMovieDetailsById(
         movieId: String,
-        onSuccess: (MovieVO) -> Unit,
+        onSuccess: (MovieDetailsVO) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        mCinemaDatabase?.getDao()?.getMovieById(movieId = movieId.toInt())?.let {
-            onSuccess(it)
-        }
+//        mCinemaDatabase?.getDao()?.getMovieById(movieId = movieId.toInt())?.let {
+//            onSuccess(it)
+//        }
 
         mMovieDataAgent.getMovieDetailsById(movieId, onSuccess = { movie ->
+            movie.genres?.let {
+
+            }
             mMovie = movie
-            val db = mCinemaDatabase?.getDao()?.getMovieById(movieId = movieId.toInt())
-            movie.type = db?.type
-            mCinemaDatabase?.getDao()?.insertSingleMovie(movie)
+            //val db = mCinemaDatabase?.getDao()?.getMovieById(movieId = movieId.toInt())
+            //movie.type = db?.type.toString()
+            //mCinemaDatabase?.getDao()?.insertSingleMovie(movie)
             onSuccess(movie)
         }, onFailure = onFailure)
     }
@@ -135,12 +158,14 @@ object CinemaModelImpl : CinemaModel {
     override fun getMovieByIdForTicket(movieId: String) = mMovie
 
     override fun getCinemaTimeSlots(
+        movieName: String,
         authorization: String,
         date: String,
         onSuccess: (List<CinemaVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
         mMovieDataAgent.getCinemaTimeSlots(
+            movieName = movieName,
             authorization = authorization,
             date = date,
             onSuccess = onSuccess,
@@ -170,7 +195,13 @@ object CinemaModelImpl : CinemaModel {
         }, onFailure = onFailure)
     }
 
-    override fun getCinemaInfo(cinemaId: Int) = mCinemaDatabase?.getDao()?.getCinemaInfo(cinemaId)
+    override fun getCinemaInfo(cinemaId: Int,onSuccess: (CinemaDetailsVO) -> Unit,onFailure: (String) -> Unit){
+        mFirebaseApi.cinemaDetails(
+            cinemaId,
+            onSuccess,
+            onFailure
+        )
+    }
 
     override fun getSeatPlan(
         authorization: String,
@@ -180,6 +211,17 @@ object CinemaModelImpl : CinemaModel {
         onFailure: (String) -> Unit
     ) {
         mMovieDataAgent.getSeatPlan(authorization, dayTimeSlotId, bookingDate, onSuccess, onFailure)
+    }
+
+    //Seat Plan with Firebase
+    override fun getSeatList(
+        movieName: String,
+        bookingDate: String,
+        timeSlotId : String,
+        onSuccess: (groceries: MutableList<SeatVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.getSeatList(movieName,bookingDate,timeSlotId,onSuccess,onFailure)
     }
 
     override fun getSnackCategory(
@@ -242,6 +284,33 @@ object CinemaModelImpl : CinemaModel {
 
     override fun deleteTicket(ticketId: Int) {
         mCinemaDatabase?.getDao()?.deleteTicket(ticketId)
+    }
+
+    override fun buyingTicket(
+        movieName: String,
+        bookingDate: String,
+        timeSlotId: String,
+        seatName: String, type: String) {
+        mFirebaseApi.buyingTicket(movieName,bookingDate,timeSlotId,seatName,type)
+    }
+
+    override fun getBookingData(
+        bookingCode: String,
+        onSuccess: (bookingData: BookingVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.getBookingData(bookingCode,onSuccess,onFailure)
+    }
+
+    override fun addBookingData(
+        movieName: String,
+        tickets: String,
+        cinema: String,
+        bookingDate: String,
+        bookingCode: String,
+        isBought: Boolean
+    ) {
+        mFirebaseApi.addBookingData(movieName,tickets,cinema,bookingDate,bookingCode,isBought)
     }
 
 }

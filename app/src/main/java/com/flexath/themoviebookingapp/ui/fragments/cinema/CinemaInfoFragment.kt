@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.flexath.themoviebookingapp.R
 import com.flexath.themoviebookingapp.data.model.CinemaModel
 import com.flexath.themoviebookingapp.data.model.CinemaModelImpl
@@ -61,54 +62,58 @@ class CinemaInfoFragment : Fragment() {
 
     private fun setUpListeners() {
         btnBackCinemaInfo.setOnClickListener {
-            vvVideoCinemaInfo.stopPlayback()
-            vvVideoCinemaInfo.pause()
             findNavController().popBackStack()
         }
     }
 
     private fun bindCinemaInfoData(){
-        mCinemaModel.getCinemaInfo(args.argCinemaId)?.also {
-            tvCinemaNameCinemaInfo.text = it.name
-            tvLocationCinemaInfo.text = it.address
-            it.promoVdoUrl?.let { url ->
-                playCinemaVideo(url)
-            }
+        mCinemaModel.getCinemaInfo(args.argCinemaId,
+            onSuccess = {
+                tvCinemaNameCinemaInfo.text = it.name
+                tvLocationCinemaInfo.text = it.address
+                tvCinemaEmail.text = it.email
+                tvCinemaPhone.text = it.phone
+                Glide.with(requireContext())
+                    .load(it.image)
+                    .into(vvVideoCinemaInfo)
 
-            it.safety?.forEach { safety ->
-                safetyList.add(safety)
-            }
-            setSafetyLinearLayout()
+                it.safety?.forEach { safety ->
+                    safetyList.add(safety)
+                }
+                setSafetyLinearLayout()
 
-            it.facilities?.forEach { facility ->
-                facilityChipGroup.addView(createDynamicChipButton(facility.title,facility.img))
+                it.facilities?.forEach { facility ->
+                    facilityChipGroup.addView(createDynamicChipButton(facility.title,facility.img))
+                }
+            }, onFailure = {
+
             }
-        }
+        )
     }
 
-    private fun playCinemaVideo(urlString: String) {
-        setUpVideoView(urlString)
-        vvVideoCinemaInfo.start()
-        if(!isCinemaVideoPlaying) {
-//            btnPlayCinemaInfo.setImageResource(R.drawable.ic_baseline_pause_white_22dp)
-            vvVideoCinemaInfo.resume()
-            isCinemaVideoPlaying = true
-        }else {
-//            btnPlayCinemaInfo.setImageResource(R.drawable.ic_baseline_play_arrow_white_22dp)
-            vvVideoCinemaInfo.pause()
-            isCinemaVideoPlaying = false
-        }
-    }
+//    private fun playCinemaVideo(urlString: String) {
+//        setUpVideoView(urlString)
+//        vvVideoCinemaInfo.start()
+//        if(!isCinemaVideoPlaying) {
+////            btnPlayCinemaInfo.setImageResource(R.drawable.ic_baseline_pause_white_22dp)
+//            vvVideoCinemaInfo.resume()
+//            isCinemaVideoPlaying = true
+//        }else {
+////            btnPlayCinemaInfo.setImageResource(R.drawable.ic_baseline_play_arrow_white_22dp)
+//            vvVideoCinemaInfo.pause()
+//            isCinemaVideoPlaying = false
+//        }
+//    }
 
-    private fun setUpVideoView(urlString:String) {
-        val mediaController = MediaController(requireContext())
-        mediaController.setAnchorView(vvVideoCinemaInfo)
-
-        val videoUri = Uri.parse(urlString)
-        vvVideoCinemaInfo.setMediaController(mediaController)
-        vvVideoCinemaInfo.setVideoURI(videoUri)
-        vvVideoCinemaInfo.requestFocus()
-    }
+//    private fun setUpVideoView(urlString:String) {
+//        val mediaController = MediaController(requireContext())
+//        mediaController.setAnchorView(vvVideoCinemaInfo)
+//
+//        val videoUri = Uri.parse(urlString)
+//        vvVideoCinemaInfo.setMediaController(mediaController)
+//        vvVideoCinemaInfo.setVideoURI(videoUri)
+//        vvVideoCinemaInfo.requestFocus()
+//    }
 
     private fun setSafetyLinearLayout() {
         val safetyFactory = CinemaInfoFactory()

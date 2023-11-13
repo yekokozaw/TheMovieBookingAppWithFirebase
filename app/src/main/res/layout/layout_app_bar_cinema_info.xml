@@ -23,13 +23,4 @@
         android:textSize="@dimen/text_small_2x"
         android:textColor="@color/white"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnStarCinemaInfo"
-        android:layout_width="@dimen/width_back_arrow_cinema"
-        android:layout_height="@dimen/height_back_arrow_cinema"
-        android:layout_gravity="center_vertical|end"
-        android:layout_marginEnd="22dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/button_star_black" />
-
 </FrameLayout>

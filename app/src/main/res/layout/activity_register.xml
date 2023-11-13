@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.activities.RegisterActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRegisterHere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Here"
+        android:textColor="@color/white"
+        android:fontFamily="@font/dm_sans"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/text_heading_1x"
+        android:layout_marginTop="@dimen/margin_medium_3"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_medium_3"
+        android:layout_below="@id/tvRegisterHere"
+        android:text="Create a new account"
+        android:textColor="@color/colorAccent"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvRegisterImage"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/tvRegisterHere"
+        android:layout_marginTop="68dp"
+        android:background="@color/colorPrimary"
+        app:cardCornerRadius="48dp"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRegisterLogo"
+            android:layout_width="100dp"
+            android:layout_height="90dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_image"
+            android:layout_centerHorizontal="true"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/edtUsername"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_xxlarge"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:layout_below="@id/mcvRegisterImage"
+        android:backgroundTint="@color/colorSecondaryText"
+        android:hint="Enter Your User Name"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/edtRegisterEmail"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:inputType="textEmailAddress"
+        android:layout_below="@id/edtUsername"
+        android:backgroundTint="@color/colorSecondaryText"
+        android:hint="Enter Your Email"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edtLayoutPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtRegisterEmail"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorGrey"
+        android:textColorHint="@color/colorSecondaryText"
+        app:boxBackgroundColor="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtRegisterPassword"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_large"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textColorHint="@color/colorSecondaryText"
+            android:layout_below="@id/edtRegisterEmail"
+            android:background="@color/colorPrimary"
+            android:hint="Enter Your Password"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/edtPhoneNumber"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_below="@id/edtLayoutPassword"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:textColor="@color/white"
+        android:inputType="phone"
+        android:backgroundTint="@color/white"
+        android:hint="Enter Your Phone Number"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_below="@id/edtPhoneNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_xlarge"/>
+</RelativeLayout>

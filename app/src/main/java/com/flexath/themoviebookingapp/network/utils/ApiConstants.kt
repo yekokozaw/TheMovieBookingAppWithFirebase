@@ -1,18 +1,25 @@
 package com.flexath.themoviebookingapp.network.utils
 
+import com.flexath.themoviebookingapp.data.vos.movie.cinema.TimeslotVO
+
 // API_KEY
 const val YOUTUBE_API_KEY = "AIzaSyBuQOtSzg4Y01m610Qxd4ByrrbYnjTOvfI"
 const val API_KEY = "ad1e17e27becb3abedf8eaccc61b8d5d"
 
-const val BASE_URL = "https://tmba.padc.com.mm"
+const val BASE_URL = "https://api.themoviedb.org"
 const val IMG_BASE_URL = "https://image.tmdb.org/t/p/w400"
+const val PARAM_API_KEY = "api_key"
+const val MOVIE_API_KEY =  "264acf938e91a16fdfee6f870edb4a4a"
+const val PARAM_PAGE = "page"
 
 // GET URLs
 const val API_GET_CITIES = "/api/v2/cities"
 const val API_GET_BANNERS = "/api/v2/banners"
-const val API_GET_NOW_PLAYING = "/api/v1/movies"
-const val API_GET_COMING_SOON = "/api/v1/movies"
-const val API_GET_MOVIE_DETAILS = "/api/v1/movies"
+
+const val API_GET_NOW_PLAYING = "/3/movie/now_playing"
+const val API_GET_COMING_SOON = "/3/movie/upcoming"
+
+const val API_GET_MOVIE_DETAILS = "/3/movie"
 const val API_GET_CINEMA_TIMESLOTS = "/api/v2/cinema-day-timeslots"
 const val API_GET_CINEMA_CONFIG = "/api/v2/configurations"
 const val API_GET_CINEMA_INFO = "/api/v2/cinemas"

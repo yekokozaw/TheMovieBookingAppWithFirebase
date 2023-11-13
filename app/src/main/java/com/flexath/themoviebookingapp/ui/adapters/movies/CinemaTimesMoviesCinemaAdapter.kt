@@ -1,8 +1,10 @@
 package com.flexath.themoviebookingapp.ui.adapters.movies
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.flexath.themoviebookingapp.R
 import com.flexath.themoviebookingapp.data.vos.movie.cinema.TimeslotVO
@@ -18,6 +20,7 @@ class CinemaTimesMoviesCinemaAdapter(private val delegate: CinemaListViewHolderD
         return CinemaTimesMoviesCinemaViewHolder(view,delegate)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: CinemaTimesMoviesCinemaViewHolder, position: Int) {
         holder.bindData(mTimeSlots[position])
     }

@@ -3,9 +3,11 @@ package com.flexath.themoviebookingapp.data.vos.movie
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 
 @Entity("banners_table")
+@IgnoreExtraProperties
 data class BannerVO(
 
     @SerializedName("created_at")
@@ -22,13 +24,13 @@ data class BannerVO(
 
     @SerializedName("title")
     @ColumnInfo("title")
-    val title: String?,
+    val title: String? = "",
 
     @SerializedName("updated_at")
     @ColumnInfo("updated_at")
-    val updatedAt: String?,
+    val updatedAt: String? = "",
 
     @SerializedName("url")
     @ColumnInfo("url")
-    val url: String?
+    val url: String = ""
 )

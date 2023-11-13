@@ -109,93 +109,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llSeatAvailableMoviesCinema"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llFilmTypesMoviesCinema"
-                android:layout_marginTop="@dimen/margin_30dp"
-                android:background="@color/colorSeatBackground"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/margin_card_medium_2"
-                android:paddingBottom="@dimen/margin_card_medium_2">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/width_dot"
-                        android:layout_height="@dimen/height_dot"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/margin_10dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/dot_green" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="@string/lbl_available"
-                        android:textColor="@color/colorGreen" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/margin_medium_4_n_2x"
-                    android:layout_marginEnd="@dimen/margin_medium_4_n_2x"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/width_dot"
-                        android:layout_height="@dimen/height_dot"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/margin_10dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/dot_orange" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="@string/lbl_filling_fast"
-                        android:textColor="@color/colorOrange" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/width_dot"
-                        android:layout_height="@dimen/height_dot"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/margin_10dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/dot_purple" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="@string/lbl_almost_full"
-                        android:textColor="@color/colorPurple" />
-
-                </LinearLayout>
-
-            </LinearLayout>
 
 <!--            <androidx.recyclerview.widget.RecyclerView-->
 <!--                android:id="@+id/rvCinemasMoviesCinema"-->
@@ -207,7 +120,7 @@
             <include
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/llSeatAvailableMoviesCinema"
+                android:layout_below="@+id/llFilmTypesMoviesCinema"
                 android:id="@+id/vpMoviesCinema"
                 layout="@layout/view_pod_cinema_list"/>
 

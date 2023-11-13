@@ -27,12 +27,18 @@ data class TicketInformation(
     @ColumnInfo("address")
     val address:String?,
 
+    @ColumnInfo("booking_time")
+    val bookingTime : Long?,
+
+    @PrimaryKey
+    @ColumnInfo("qrcode")
+    val qrcode: Int?,
+
     @ColumnInfo("movie_name")
     val movieName:String?,
 
     @ColumnInfo("movie_poster")
     val moviePoster:String?
 ) : java.io.Serializable {
-    @PrimaryKey(autoGenerate = true)
     var id:Int = 0
 }

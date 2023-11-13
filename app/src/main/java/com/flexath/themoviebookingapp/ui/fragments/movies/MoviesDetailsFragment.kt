@@ -2,6 +2,7 @@ package com.flexath.themoviebookingapp.ui.fragments.movies
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import com.flexath.themoviebookingapp.R
 import com.flexath.themoviebookingapp.data.model.CinemaModel
 import com.flexath.themoviebookingapp.data.model.CinemaModelImpl
 import com.flexath.themoviebookingapp.data.vos.movie.CastVO
+import com.flexath.themoviebookingapp.data.vos.movie.MovieDetailsVO
 import com.flexath.themoviebookingapp.data.vos.movie.MovieVO
 import com.flexath.themoviebookingapp.network.utils.IMG_BASE_URL
 import com.flexath.themoviebookingapp.service.NotificationWorkManager
@@ -41,7 +43,7 @@ class MoviesDetailsFragment : Fragment() {
 
     private var movieId:Int = 0
     private var mMovieName:String? = null
-
+    val genreNames: MutableList<String> = mutableListOf()
     private var mMovieModel: CinemaModel = CinemaModelImpl
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -78,7 +80,7 @@ class MoviesDetailsFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun bindNewData(movie: MovieVO?) {
+    private fun bindNewData(movie: MovieDetailsVO?){
         Glide.with(requireActivity())
             .load("$IMG_BASE_URL${movie?.posterPath}")
             .into(ivPosterMoviesDetail)
@@ -90,7 +92,8 @@ class MoviesDetailsFragment : Fragment() {
         tvDurationMovieDetails.text = movie?.changeRunTimeMinToHour()
         tvReleaseDateMovieDetails.text = movie?.changeReleaseDateFormat("details")
         movie?.casts?.let {
-            setUpCastRecyclerView(it)               // For Casts
+
+            setUpCastRecyclerView(it.cast)               // For Casts
         }
         if (movie != null) {
             bindGenre(movie)
@@ -189,42 +192,50 @@ class MoviesDetailsFragment : Fragment() {
         WorkManager.getInstance(requireActivity()).enqueue(workRequest)
     }
 
-    private fun bindGenre(movie: MovieVO) {
-        movie.genres?.count()?.let {
-            chipGenreOne.text = movie.genres.firstOrNull() ?: ""
-            chipGenreTwo.text = movie.genres.getOrNull(1) ?: ""
-            chipGenreThree.text = movie.genres.getOrNull(2) ?: ""
-            chipGenreFour.text = movie.genres.getOrNull(3) ?: ""
-            chipGenreFive.text = movie.genres.getOrNull(4) ?: ""
+    private fun bindGenre(movie: MovieDetailsVO) {
+        movie.genres?.let {
+            for (genre in it){
+                genre.name?.let { it1 -> genreNames.add(it1) }
+                Log.d("genre",genreNames.toString())
+            }
+            genreNames?.count()?.let {
+                Log.d("genreCount",it.toString())
+                chipGenreOne.text = genreNames.firstOrNull() ?: ""
+                chipGenreTwo.text = genreNames.getOrNull(1) ?: ""
+                chipGenreThree.text = genreNames.getOrNull(2) ?: ""
+                chipGenreFour.text = genreNames.getOrNull(3) ?: ""
+                chipGenreFive.text = genreNames.getOrNull(4) ?: ""
 
-            when(it) {
-                0 -> {
-                    chipGenreOne.visibility = View.GONE
-                    chipGenreTwo.visibility = View.GONE
-                    chipGenreThree.visibility = View.GONE
-                    chipGenreFour.visibility = View.GONE
-                    chipGenreFive.visibility = View.GONE
-                }
-                1 -> {
-                    chipGenreTwo.visibility = View.GONE
-                    chipGenreThree.visibility = View.GONE
-                    chipGenreFour.visibility = View.GONE
-                    chipGenreFive.visibility = View.GONE
-                }
-                2 -> {
-                    chipGenreThree.visibility = View.GONE
-                    chipGenreFour.visibility = View.GONE
-                    chipGenreFive.visibility = View.GONE
-                }
-                3 -> {
-                    chipGenreFour.visibility = View.GONE
-                    chipGenreFive.visibility = View.GONE
-                }
-                4 -> {
-                    chipGenreFive.visibility = View.GONE
+                when(it) {
+                    0 -> {
+                        chipGenreOne.visibility = View.GONE
+                        chipGenreTwo.visibility = View.GONE
+                        chipGenreThree.visibility = View.GONE
+                        chipGenreFour.visibility = View.GONE
+                        chipGenreFive.visibility = View.GONE
+                    }
+                    1 -> {
+                        chipGenreTwo.visibility = View.GONE
+                        chipGenreThree.visibility = View.GONE
+                        chipGenreFour.visibility = View.GONE
+                        chipGenreFive.visibility = View.GONE
+                    }
+                    2 -> {
+                        chipGenreThree.visibility = View.GONE
+                        chipGenreFour.visibility = View.GONE
+                        chipGenreFive.visibility = View.GONE
+                    }
+                    3 -> {
+                        chipGenreFour.visibility = View.GONE
+                        chipGenreFive.visibility = View.GONE
+                    }
+                    4 -> {
+                        chipGenreFive.visibility = View.GONE
+                    }
                 }
             }
         }
+
     }
 
     private fun setUpListeners(){
@@ -251,7 +262,7 @@ class MoviesDetailsFragment : Fragment() {
             rlReleasingDateMoviesDetails.visibility = View.GONE
             btnBookingButtonMoviesDetails.visibility = View.VISIBLE
         }else{                                                                  // For Coming Soon
-            rlReleasingDateMoviesDetails.visibility = View.VISIBLE
+            rlReleasingDateMoviesDetails.visibility = View.GONE
             btnBookingButtonMoviesDetails.visibility = View.GONE
         }
     }

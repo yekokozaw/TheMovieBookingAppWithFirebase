@@ -58,7 +58,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:layout_marginEnd="@dimen/margin_small"
-                        android:fontFamily="@font/dm_sans_bold"
                         tools:text="Black Widow"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_18sp" />
@@ -73,7 +72,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_small"
-                            android:fontFamily="@font/dm_sans"
                             android:text="(3D)"
                             android:textColor="@color/white"
                             android:textSize="@dimen/text_regular_2x" />
@@ -81,7 +79,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
                             android:text="(U/A)"
                             android:textColor="@color/white"
                             android:textSize="@dimen/text_regular_2x" />
@@ -97,7 +94,6 @@
                     android:layout_below="@+id/llMovieTitleMoviesTicketConfirmation"
                     android:layout_marginTop="@dimen/margin_10dp"
                     android:layout_marginEnd="@dimen/margin_small"
-                    android:fontFamily="@font/dm_sans"
                     tools:text="JCGV: Junction City"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_18sp" />
@@ -113,7 +109,6 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/dm_sans_bold"
                         android:text="@string/lbl_m_ticket"
                         android:textColor="@color/colorGrey"
                         android:textSize="@dimen/text_regular" />
@@ -122,7 +117,6 @@
                         android:id="@+id/tvNumberOfTicketConfirmation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/dm_sans_bold"
                         tools:text="2"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_regular" />
@@ -130,7 +124,6 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/dm_sans_bold"
                         android:text="@string/lbl_closed_bracket"
                         android:textColor="@color/colorGrey"
                         android:textSize="@dimen/text_regular" />
@@ -151,7 +144,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.8"
-                        android:fontFamily="@font/dm_sans_bold"
                         android:gravity="start"
                         tools:text="Gold-G8,G7"
                         android:textColor="@color/white"
@@ -160,7 +152,6 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/dm_sans"
                         android:layout_weight="1.2"
                         android:text="(Screen 2)"
                         android:textColor="@color/colorGrey"
@@ -234,7 +225,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_10dp"
-                    android:fontFamily="@font/dm_sans"
                     android:gravity="center"
                     tools:text="Sat,28 Jan,2022"
                     android:textColor="@color/white"
@@ -262,7 +252,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_10dp"
-                    android:fontFamily="@font/dm_sans"
                     android:gravity="center"
                     tools:text="3:30PM"
                     android:textColor="@color/white"
@@ -288,7 +277,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_10dp"
-                    android:fontFamily="@font/dm_sans"
                     android:gravity="center"
                     tools:text="Q5H3+JPP, Corner of, Bogyoke Lann, Yangon"
                     android:textColor="@color/white"

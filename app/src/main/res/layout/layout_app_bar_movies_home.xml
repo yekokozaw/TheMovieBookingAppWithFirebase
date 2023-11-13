@@ -7,14 +7,14 @@
     android:background="@color/colorPrimary">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="@dimen/width_navigation_icon"
-        android:layout_height="@dimen/height_navigation_icon"
+        android:layout_width="@dimen/margin_medium_3"
+        android:layout_height="@dimen/margin_large"
         android:layout_gravity="center_vertical|start"
-        android:layout_marginStart="@dimen/margin_38dp"
+        android:layout_marginStart="@dimen/margin_large"
         android:layout_marginBottom="@dimen/margin_small_smaller"
         android:layout_marginEnd="@dimen/margin_medium"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/navigation_white" />
+        app:srcCompat="@drawable/splash_logo" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCityNameMoviesHome"
@@ -24,9 +24,8 @@
         android:layout_gravity="center_vertical|start"
         android:layout_marginStart="@dimen/margin_62dp"
         android:gravity="center_vertical|start"
-        android:fontFamily="@font/inter"
         android:letterSpacing="-0.02"
-        android:text="Yangon"
+        android:text="Welcome"
         android:textColor="@color/white"
         android:textSize="@dimen/text_regular_2x"
         android:textStyle="bold|italic" />
@@ -41,23 +40,24 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnSearchMoviesHome"
             android:layout_width="@dimen/width_btn_back_movies_details"
-            android:layout_height="@dimen/height_btn_back_movies_details"
+            android:layout_height="@dimen/height_33dp"
             android:scaleType="centerCrop"
+            android:layout_marginEnd="@dimen/margin_medium"
             app:srcCompat="@drawable/ic_baseline_search_white_24dp" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/width_btn_back_movies_details"
-            android:layout_height="@dimen/height_btn_back_movies_details"
-            android:layout_marginStart="@dimen/margin_30dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_baseline_notifications_white_22dp" />
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:layout_width="@dimen/width_btn_back_movies_details"-->
+<!--            android:layout_height="@dimen/height_btn_back_movies_details"-->
+<!--            android:layout_marginStart="@dimen/margin_30dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            app:srcCompat="@drawable/ic_baseline_notifications_white_22dp" />-->
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/width_btn_back_movies_details"
-            android:layout_height="@dimen/height_btn_back_movies_details"
-            android:layout_marginStart="@dimen/margin_30dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/scanning" />
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:layout_width="@dimen/width_btn_back_movies_details"-->
+<!--            android:layout_height="@dimen/height_btn_back_movies_details"-->
+<!--            android:layout_marginStart="@dimen/margin_30dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            app:srcCompat="@drawable/scanning" />-->
 
     </LinearLayout>
 

@@ -64,7 +64,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/dm_sans"
                     android:text="@string/normal_4500ks_lbl"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="@dimen/text_regular_2x" />
@@ -141,7 +140,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:fontFamily="@font/inter_semibold"
                     android:text="@string/lbl_available"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="@dimen/text_regular" />
@@ -168,7 +166,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:fontFamily="@font/inter_semibold"
                     android:text="@string/lbl_taken"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="@dimen/text_regular" />
@@ -193,7 +190,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:fontFamily="@font/inter_medium"
                     android:text="@string/lbl_your_selection"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="@dimen/text_regular" />
@@ -256,7 +252,6 @@
                     android:id="@+id/tvNumberOfTicketsMoviesSeat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_bold"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_ticket"
                     tools:text="2 Tickets" />
@@ -265,7 +260,6 @@
                     android:id="@+id/tvTicketPriceMoviesSeat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_bold"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_regular_3x"
                     tools:text="17000KS" />

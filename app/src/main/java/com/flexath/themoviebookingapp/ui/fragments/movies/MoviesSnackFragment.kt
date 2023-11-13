@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -30,6 +31,7 @@ import com.flexath.themoviebookingapp.ui.utils.SeatData
 import com.flexath.themoviebookingapp.ui.utils.Ticket
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
+import io.github.muddz.styleabletoast.StyleableToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_movies_food.*
 import kotlinx.android.synthetic.main.layout_app_bar_movies_food.*
@@ -87,7 +89,7 @@ class MoviesSnackFragment : Fragment(), SnackViewHolderDelegate {
 
     private fun requestData() {
         mCinemaModel.getSnackCategory(
-            "Bearer ${mCinemaModel.getOtp(201)?.token}",
+            "Bearer 18112|dp0oclqVIL57JvmormSokXYXsuEndQX0bhIVMswr",
             onSuccess = {
                 mSnackCategoryList = it as MutableList<SnackCategoryVO>
                 setUpSnackTabLayoutTitle(it)
@@ -113,7 +115,7 @@ class MoviesSnackFragment : Fragment(), SnackViewHolderDelegate {
 
     private fun requestSnackListData(categoryId: String) {
         mCinemaModel.getSnackByCategory(
-            "Bearer ${mCinemaModel.getOtp(201)?.token}",
+            "Bearer 18112|dp0oclqVIL57JvmormSokXYXsuEndQX0bhIVMswr",
             categoryId,
             onSuccess = {
                 mSnackList?.value = it as MutableList<SnackVO>
@@ -130,7 +132,7 @@ class MoviesSnackFragment : Fragment(), SnackViewHolderDelegate {
         tabLayoutMoviesSnack.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab?.position == 0) {
-                    requestSnackListData("")
+                    requestSnackListData("0")
                 } else {
                     mSnackCategoryList?.get(tab?.position?.minus(1) ?: 0)?.id?.let { categoryId ->
                         requestSnackListData(categoryId.toString())
@@ -172,8 +174,8 @@ class MoviesSnackFragment : Fragment(), SnackViewHolderDelegate {
 
     private fun navigateToNextScreen() {
         mCinemaModel.getSnackByCategory(
-            "Bearer ${mCinemaModel.getOtp(201)?.token}",
-            "",
+            "Bearer 18112|dp0oclqVIL57JvmormSokXYXsuEndQX0bhIVMswr",
+            "0",
             onSuccess = { snack ->
                 mSnackList?.value = snack as MutableList
                 val action = MoviesSnackFragmentDirections.actionMoviesFoodToMoviesTicketCheckout()
@@ -183,7 +185,7 @@ class MoviesSnackFragment : Fragment(), SnackViewHolderDelegate {
                 findNavController().navigate(action)
             },
             onFailure = {
-                Toast.makeText(requireActivity(), "Snack Call fails", Toast.LENGTH_SHORT).show()
+                StyleableToast.makeText(requireActivity(), "Snack Call fails", Toast.LENGTH_SHORT,R.style.myErrorToast).show()
             }
         )
     }
@@ -194,6 +196,9 @@ class MoviesSnackFragment : Fragment(), SnackViewHolderDelegate {
             navigateToNextScreen()
         }
 
+        btnBackMoviesFood.setOnClickListener {
+            findNavController().popBackStack()
+        }
         btnSkipButtonMoviesFood.setOnClickListener {
             navigateToNextScreen()
         }

@@ -39,8 +39,8 @@ data class TicketCheckoutVO(
     @SerializedName("timeslot")
     val timeslot:TimeslotVO?,
 
-    @SerializedName("snacks")
-    val snacks:List<TicketCheckoutSnackVO>?,
+//    @SerializedName("snacks")
+//    val snacks:List<TicketCheckoutSnackVO>?,
 
     @SerializedName("qr_code")
     val qrCode:String?

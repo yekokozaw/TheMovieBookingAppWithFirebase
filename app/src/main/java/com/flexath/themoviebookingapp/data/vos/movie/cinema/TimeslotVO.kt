@@ -1,15 +1,16 @@
 package com.flexath.themoviebookingapp.data.vos.movie.cinema
 
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 
+@IgnoreExtraProperties
 data class TimeslotVO(
 
-    @SerializedName("cinema_day_timeslot_id")
-    val cinemaDayTimeslotId: Int?,
+    var cinemaDayTimeslotId: Int? = 0,
 
-    @SerializedName("start_time")
-    val start_time: String?,
+    var start_time: String? = "",
 
-    @SerializedName("status")
-    val status: Int?
+    var start_date: String? = "",
+
+    var status: Int? = 0
 )

@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.flexath.themoviebookingapp.R
 import com.flexath.themoviebookingapp.data.vos.movie.BannerVO
+import com.flexath.themoviebookingapp.data.vos.movie.BannersVO
 import com.flexath.themoviebookingapp.ui.viewholders.movies.BannerHomeViewHolder
 
-class BannerMoviesHomeAdapter(private val bannerImageList:List<BannerVO>) : RecyclerView.Adapter<BannerHomeViewHolder>() {
+class BannerMoviesHomeAdapter(private val bannerImageList:List<BannersVO>) : RecyclerView.Adapter<BannerHomeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerHomeViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movies_home_banner_list,parent,false)
         return BannerHomeViewHolder(view)

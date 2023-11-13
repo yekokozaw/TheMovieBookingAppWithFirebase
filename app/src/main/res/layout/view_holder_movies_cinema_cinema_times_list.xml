@@ -42,7 +42,7 @@
             android:layout_marginTop="@dimen/margin_5dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="Screen 2"
+            android:text="Screen"
             android:textColor="@color/white"
             android:fontFamily="@font/inter_semibold"
             android:textSize="12sp" />
@@ -54,7 +54,7 @@
             android:layout_marginBottom="@dimen/margin_medium"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="21 Available"
+            android:text="Available"
             android:textColor="@color/white"
             android:fontFamily="@font/inter_semibold"
             android:textSize="12sp" />

@@ -6,58 +6,55 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.flexath.themoviebookingapp.persistence.typeconverters.CastsVOTypeConverter
 import com.flexath.themoviebookingapp.persistence.typeconverters.GenreIdsTypeConverter
+import com.flexath.themoviebookingapp.persistence.typeconverters.GenreTypeConverter
 import com.flexath.themoviebookingapp.persistence.typeconverters.MovieCastsTypeConverter
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+@IgnoreExtraProperties
 @Entity("movie_table")
 @TypeConverters(
     GenreIdsTypeConverter::class,
-    MovieCastsTypeConverter::class
+    MovieCastsTypeConverter::class,
+    GenreTypeConverter::class,
+    CastsVOTypeConverter::class
 )
 data class MovieVO(
 
-    @SerializedName("genres")
     @ColumnInfo("genres")
-    val genres: List<String>?,
+    val genres: List<GenreVO>? = listOf(),
 
-    @SerializedName("id")
     @PrimaryKey
-    val id: Int?,
+    val id: Int? = 0,
 
-    @SerializedName("original_title")
     @ColumnInfo("original_title")
-    val originalTitle: String?,
+    val originalTitle: String? = "",
 
-    @SerializedName("poster_path")
     @ColumnInfo("poster_path")
-    val posterPath: String?,
+    val posterPath: String? = "",
 
-    @SerializedName("release_date")
     @ColumnInfo("release_date")
-    val releaseDate: String?,
+    val releaseDate: String? = "",
 
-    @SerializedName("casts")
     @ColumnInfo("casts")
-    val casts: List<CastVO>?,
+    val casts: CastsVO? = CastsVO(listOf(), listOf()),
 
-    @SerializedName("overview")
     @ColumnInfo("overview")
-    val overview: String?,
+    val overview: String? = "",
 
-    @SerializedName("rating")
     @ColumnInfo("rating")
-    val rating: Double?,
+    val rating: Double? = 0.0,
 
-    @SerializedName("runtime")
     @ColumnInfo("runtime")
-    val runtime: Int?,
+    val runtime: Int? = 0,
 
     @ColumnInfo("type")
-    var type:String?
+    var type:String? = ""
 ) {
     @RequiresApi(Build.VERSION_CODES.O)
     fun changeReleaseDateFormat(screenMovie:String): String {

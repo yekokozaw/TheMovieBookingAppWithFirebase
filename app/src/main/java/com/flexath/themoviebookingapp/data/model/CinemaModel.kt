@@ -1,8 +1,10 @@
 package com.flexath.themoviebookingapp.data.model
 
 import com.flexath.themoviebookingapp.data.vos.location.CitiesVO
-import com.flexath.themoviebookingapp.data.vos.movie.BannerVO
+import com.flexath.themoviebookingapp.data.vos.movie.BannersVO
+import com.flexath.themoviebookingapp.data.vos.movie.CinemaDetailsVO
 import com.flexath.themoviebookingapp.data.vos.movie.CinemaInfoVO
+import com.flexath.themoviebookingapp.data.vos.movie.MovieDetailsVO
 import com.flexath.themoviebookingapp.data.vos.movie.MovieVO
 import com.flexath.themoviebookingapp.data.vos.movie.cinema.CinemaVO
 import com.flexath.themoviebookingapp.data.vos.movie.cinema.ConfigVO
@@ -13,13 +15,24 @@ import com.flexath.themoviebookingapp.data.vos.movie.PaymentVO
 import com.flexath.themoviebookingapp.data.vos.movie.confirmation.CheckoutBody
 import com.flexath.themoviebookingapp.data.vos.movie.confirmation.TicketCheckoutVO
 import com.flexath.themoviebookingapp.data.vos.movie.VideoVO
+import com.flexath.themoviebookingapp.data.vos.signin.TokenVO
+import com.flexath.themoviebookingapp.data.vos.signin.UserVO
+import com.flexath.themoviebookingapp.data.vos.ticket.BookingVO
 import com.flexath.themoviebookingapp.data.vos.ticket.TicketInformation
+import com.flexath.themoviebookingapp.network.firebase.CloudFirestoreFirebaseApi
+import com.flexath.themoviebookingapp.network.firebase.FirebaseApi
 import com.flexath.themoviebookingapp.network.responses.LogoutResponse
 import com.flexath.themoviebookingapp.network.responses.OTPResponse
-import com.flexath.themoviebookingapp.ui.utils.Ticket
 
 interface CinemaModel {
 
+    var mFirebaseApi : FirebaseApi
+
+    var mCloudFirestoreApi:CloudFirestoreFirebaseApi
+
+    fun addUser(user: UserVO)
+
+    fun getUsers(onSuccess: (users: List<UserVO>) -> Unit, onFailure: (String) -> Unit)
     // Location Screen
     fun insertCities(
         onSuccess:(List<CitiesVO>) -> Unit,
@@ -27,6 +40,13 @@ interface CinemaModel {
     )
 
     fun getCities():List<CitiesVO>?
+
+    fun getSeatList(
+        movieName: String,
+        bookingDate: String,
+        timeSlotId : String,
+        onSuccess: (seatList: MutableList<SeatVO>) -> Unit,
+        onFailure: (String) -> Unit)
 
     // Login Screen
     fun sendOTP(
@@ -45,9 +65,12 @@ interface CinemaModel {
 
     fun getOtp(code:Int):OTPResponse?
 
+    fun getToken() : TokenVO?
+
+    fun addToken(token: TokenVO)
     // Movie Home Screen - Banner
     fun getBanners(
-        onSuccess:(List<BannerVO>) -> Unit,
+        onSuccess:(List<BannersVO>) -> Unit,
         onFailure:(String) -> Unit
     )
 
@@ -65,7 +88,7 @@ interface CinemaModel {
     // Movie Detail Screen
     fun getMovieDetailsById(
         movieId:String,
-        onSuccess:(MovieVO) -> Unit,
+        onSuccess:(MovieDetailsVO) -> Unit,
         onFailure:(String) -> Unit
     )
 
@@ -77,10 +100,11 @@ interface CinemaModel {
 
     fun getMovieByIdForTicket(
         movieId:String
-    ):MovieVO?
+    ): MovieDetailsVO?
 
     // Movie Cinema Screen
     fun getCinemaTimeSlots(
+        movieName: String,
         authorization:String,
         date:String,
         onSuccess:(List<CinemaVO>) -> Unit,
@@ -100,7 +124,7 @@ interface CinemaModel {
         onFailure:(String) -> Unit
     )
 
-    fun getCinemaInfo(cinemaId:Int):CinemaInfoVO?
+    fun getCinemaInfo(cinemaId:Int,onSuccess: (CinemaDetailsVO) -> Unit,onFailure: (String) -> Unit)
 
     // Movie Cinema Screen
     fun getSeatPlan(
@@ -156,4 +180,25 @@ interface CinemaModel {
     fun getAllTickets():List<TicketInformation>?
 
     fun deleteTicket(ticketId:Int)
+
+    fun buyingTicket(
+        movieName: String,
+        bookingDate: String,
+        timeSlotId: String,
+        seatName: String, type: String)
+
+    fun getBookingData(
+        bookingCode : String,
+        onSuccess: (bookingData: BookingVO) -> Unit,
+        onFailure: (String) -> Unit
+    )
+
+    fun addBookingData(
+        movieName: String,
+        tickets : String,
+        cinema : String,
+        bookingDate: String,
+        bookingCode: String,
+        isBought : Boolean,
+    )
 }

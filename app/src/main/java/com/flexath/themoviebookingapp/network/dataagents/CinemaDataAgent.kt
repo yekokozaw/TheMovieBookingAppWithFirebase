@@ -1,8 +1,9 @@
 package com.flexath.themoviebookingapp.network.dataagents
 
 import com.flexath.themoviebookingapp.data.vos.location.CitiesVO
-import com.flexath.themoviebookingapp.data.vos.movie.BannerVO
+import com.flexath.themoviebookingapp.data.vos.movie.BannersVO
 import com.flexath.themoviebookingapp.data.vos.movie.CinemaInfoVO
+import com.flexath.themoviebookingapp.data.vos.movie.MovieDetailsVO
 import com.flexath.themoviebookingapp.data.vos.movie.MovieVO
 import com.flexath.themoviebookingapp.data.vos.movie.cinema.CinemaVO
 import com.flexath.themoviebookingapp.data.vos.movie.cinema.ConfigVO
@@ -41,7 +42,7 @@ interface CinemaDataAgent {
 
     // Movie Home Screen - Banner
     fun getBanners(
-        onSuccess:(List<BannerVO>) -> Unit,
+        onSuccess:(List<BannersVO>) -> Unit,
         onFailure:(String) -> Unit
     )
 
@@ -59,7 +60,7 @@ interface CinemaDataAgent {
     // Movie Detail Screen
     fun getMovieDetailsById(
         movieId:String,
-        onSuccess:(MovieVO) -> Unit,
+        onSuccess:(MovieDetailsVO) -> Unit,
         onFailure:(String) -> Unit
     )
 
@@ -71,6 +72,7 @@ interface CinemaDataAgent {
 
     // Movie Cinema Screen
     fun getCinemaTimeSlots(
+        movieName : String,
         authorization:String,
         date:String,
         onSuccess:(List<CinemaVO>) -> Unit,

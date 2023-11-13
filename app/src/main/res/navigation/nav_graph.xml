@@ -196,6 +196,9 @@
             app:nullable="true"
             app:argType="com.flexath.themoviebookingapp.data.vos.ticket.TicketInformation"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_moviesTicketCheckoutFragment_to_moviesTicketConfirmationFragment"
+            app:destination="@id/moviesTicketConfirmationFragment" />
     </fragment>
 
     <fragment

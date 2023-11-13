@@ -13,81 +13,119 @@
         android:paddingBottom="@dimen/margin_30dp"
         android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/appBarProfilePayment"
-            layout="@layout/layout_app_bar_profile_payment" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etPersonNameProfilePayment"
-            style="@style/PaymentTextInputLayoutOutLineStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/appBarProfilePayment"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/margin_42dp"
-            android:layout_marginTop="@dimen/margin_card_medium_2"
-            android:layout_marginEnd="@dimen/margin_42dp"
-            android:hint="@string/lbl_enter_your_name"
-            android:textAlignment="viewStart"
-            android:textColorHint="@color/colorSeatType"
-            app:boxBackgroundColor="@color/colorPrimary"
-            app:boxBackgroundMode="outline"
-            app:boxCollapsedPaddingTop="@dimen/margin_card_medium_2"
-            app:boxCornerRadiusBottomEnd="@dimen/margin_medium"
-            app:boxCornerRadiusBottomStart="@dimen/margin_medium"
-            app:boxCornerRadiusTopEnd="@dimen/margin_medium"
-            app:boxCornerRadiusTopStart="@dimen/margin_medium"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextColor="@color/colorAccent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:cursorVisible="true"
-                android:inputType="textPersonName"
-                android:paddingStart="@dimen/margin_27dp"
-                android:paddingTop="@dimen/margin_21dp"
-                android:paddingBottom="@dimen/margin_21dp"
-                android:textAppearance="@style/PaymentEditTextStyle"
-                android:textColor="@color/white"
-                android:textCursorDrawable="@color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btnUnlockOfferProfilePayment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/etPersonNameProfilePayment"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/margin_40dp"
-            android:layout_marginTop="@dimen/margin_xlarge"
-            android:layout_marginEnd="@dimen/margin_40dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/button_unlock_offer" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPaymentTypeTitleProfilePayment"
+            android:id="@+id/tvTitleRules"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btnUnlockOfferProfilePayment"
-            android:layout_marginStart="@dimen/margin_medium_4_n"
-            android:layout_marginTop="@dimen/margin_38dp"
+            android:textColor="@color/colorOrange"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="@string/lbl_choose_your_payment_type"
+            android:textSize="20sp"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:text="Rules and Regulations"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:layout_below="@id/tvTitleRules"
+            android:text="You can have the right to purchase only the specific date,seat,movie and show-time \nyou have chosen."
+            android:textSize="16sp"
+            android:textColor="@color/colorSecondaryText2"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/inter"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:text="မိမိရွေးချယ်ခဲ့သော နေ့ရက်၊ပွဲ၊ခုံနံပါတ်အတိုင်းသာ ၀ယ်ယူခွင့်ရှိပါမည်။"
+            android:textSize="18sp"
+            android:layout_below="@id/tvRules"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_18sp" />
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/dm_sans"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvThird"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="Before Booking Expired Time,you have to pay \nthe bill for your booking."
+            android:textSize="16sp"
+            android:textColor="@color/colorSecondaryText2"
+            android:layout_below="@id/tvSecond"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/inter"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFifth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:text="Booking Expired Time မတိုင်မီ ငွေပေးချေ\nရပါမည်။"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/tvThird"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/inter"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSixth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="For any suggestion,please feel free to contact us directly va phone; 09976492799"
+            android:textSize="16sp"
+            android:layout_below="@id/tvFifth"
+            android:textColor="@color/colorSecondaryText2"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/inter"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="အကြံပြုလိုပါက ဖုန်းနံပါတ် 09976492799 သို့ဆက်သွယ်နိုင်ပါသည်။"
+            android:textSize="18sp"
+            android:layout_below="@id/tvSixth"
+            android:textColor="@color/colorAccent"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/inter"
+            android:layout_centerHorizontal="true"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPaymentMovies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvPaymentTypeTitleProfilePayment"
+            android:layout_below="@+id/tvContact"
+            tools:itemCount="1"
             android:layout_marginStart="@dimen/margin_medium_4_n"
-            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_marginTop="@dimen/margin_xxlarge"
             tools:listitem="@layout/view_holder_movies_payment_list"
             android:layout_marginEnd="@dimen/margin_medium_4_n"/>
+
 
 <!--        <LinearLayout-->
 <!--            android:layout_width="match_parent"-->

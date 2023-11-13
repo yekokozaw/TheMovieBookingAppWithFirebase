@@ -1,17 +1,16 @@
 package com.flexath.themoviebookingapp.data.vos.movie.cinema
 
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 
+@IgnoreExtraProperties
 data class CinemaVO(
 
-    @SerializedName("cinema")
-    val cinema: String?,
+    var cinema: String? = "",
 
-    @SerializedName("cinema_id")
-    val cinemaId: Int?,
+    var cinemaId: Int? = 0,
 
-    @SerializedName("timeslots")
-    val timeslots: List<TimeslotVO>?,
+    var timeslots: List<TimeslotVO>? = emptyList<TimeslotVO>(),
 
     var isClicked:Boolean = false
 )

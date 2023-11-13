@@ -8,7 +8,7 @@ data class MovieHomeMovieListResponse(
     @SerializedName("code")
     val code: Int?,
 
-    @SerializedName("data")
+    @SerializedName("results")
     val data: List<MovieVO>?,
 
     @SerializedName("message")

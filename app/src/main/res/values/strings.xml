@@ -108,4 +108,6 @@
     <string name="cities_lbl">Cities</string>
     <string name="normal_4500ks_lbl">Normal (4500ks)</string>
     <string name="done_lbl">DONE</string>
+    <string name="techphone">Technical Ph :<font color='#00FF6A'></font></string>
+    <string name="lbl_privacy_policy">Protection of your personal information is important to us, and this privacy policy explains how we collect, use, share, disclose and protect Personal information about the Users of the Services, including the Practitioners, the End-Users (as defined in the Terms of Use), and the visitors of Website (jointly and severally referred to as “you” or “Users” in this Privacy Policy). Your use of and access to the Services is subject to this Privacy Policy and our Terms of Use.</string>
 </resources>

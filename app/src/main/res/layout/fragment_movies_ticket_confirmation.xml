@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 layout="@layout/layout_ticket_confirmation_details"
                 android:layout_below="@+id/tvTitleMoviesTicketConfirmation"
-                android:layout_marginTop="@dimen/margin_50dp"/>
+                android:layout_marginTop="50dp"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivQRCodeMoviesTicketConfirmation"
@@ -42,7 +42,6 @@
                 android:layout_height="93dp"
                 android:layout_below="@+id/llDetailsMoviesTicketConfirmation"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/margin_30dp"
                 tools:src="@drawable/qr_code" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -53,7 +52,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/margin_medium_3"
                 android:fontFamily="@font/dm_sans_bold"
-                android:text="WAG5LP1C"
+                android:text="Your Booking Code"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_regular_3x" />
 
@@ -65,20 +64,16 @@
                 android:layout_centerHorizontal="true"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dm_sans_bold"
-                    android:text="@string/lbl_tpin"
-                    android:textColor="@color/colorPrimaryLight"
-                    android:textSize="@dimen/text_regular_3x" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvBookingCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/dm_sans_bold"
-                    android:text="WKCSL96"
-                    android:textColor="@color/white"
+                    android:text="3726722"
+                    android:letterSpacing="0.04"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_regular_3x" />
 
             </LinearLayout>
@@ -111,6 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        tools:visibility="gone"
         android:background="#E6000000">
 
         <androidx.appcompat.widget.AppCompatImageView

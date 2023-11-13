@@ -1,24 +1,20 @@
 package com.flexath.themoviebookingapp.data.vos.movie
 
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 
+@IgnoreExtraProperties
 data class PaymentVO(
 
-    @SerializedName("created_at")
-    val createdAt: String?,
+    var createdAt: String? ="",
 
-    @SerializedName("deleted_at")
-    val deletedAt: Any?,
+    var deletedAt: Any? = Any(),
 
-    @SerializedName("icon")
-    val icon: String?,
+    var icon: String? = "null",
 
-    @SerializedName("id")
-    val id: Int?,
+    var id: Int? = 0,
 
-    @SerializedName("title")
-    val title: String?,
+    var title: String? = "",
 
-    @SerializedName("updated_at")
-    val updatedAt: String?
+    var updatedAt: String? = ""
 )

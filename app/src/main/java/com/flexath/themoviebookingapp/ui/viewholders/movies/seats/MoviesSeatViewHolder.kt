@@ -4,7 +4,6 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.flexath.themoviebookingapp.R
 import com.flexath.themoviebookingapp.data.vos.movie.SeatVO
-import com.flexath.themoviebookingapp.ui.adapters.movies.SeatsMoviesSeatAdapter
 import com.flexath.themoviebookingapp.ui.delegates.SeatViewHolderDelegate
 import kotlinx.android.synthetic.main.view_holder_movies_seat_list.view.*
 
@@ -17,18 +16,17 @@ class MoviesSeatViewHolder(itemView: View,private val delegate: SeatViewHolderDe
     init {
         itemView.ivSeatCinemaSeat.setOnClickListener {
             if(mSeatVO?.isSelected == false) {
-                delegate.onTapSeat(mSeatVO?.seatName ?: "",mSeatVO?.isSelected)
+                delegate.onTapSeat(mSeatVO?.seat_name ?: "",mSeatVO?.isSelected)
             } else {
-                delegate.onTapSeat(mSeatVO?.seatName ?: "",mSeatVO?.isSelected)
+                delegate.onTapSeat(mSeatVO?.seat_name ?: "",mSeatVO?.isSelected)
             }
         }
     }
 
-    fun bindSeatData(seatDoubleList: MutableList<MutableList<SeatVO>>,position: Int) {
+    fun bindSeatData(seat: SeatVO) {
 
-        val row = position / numberOfColumn
-        val column = position % numberOfColumn
-        val seat = seatDoubleList[row][column]
+//        val row = position / numberOfColumn
+//        val column = position % numberOfColumn
 
         mSeatVO = seat
 
@@ -41,15 +39,15 @@ class MoviesSeatViewHolder(itemView: View,private val delegate: SeatViewHolderDe
                 itemView.ivSeatCinemaSeat.visibility = View.INVISIBLE
                 itemView.tvSeatTypeCinemaSeat.text = seat.symbol
             }
-            "space","path" -> {
+            "blank","path" -> {
                 itemView.tvSeatTypeCinemaSeat.visibility = View.INVISIBLE
                 itemView.ivSeatCinemaSeat.visibility = View.INVISIBLE
             }
             "taken" -> {
-                itemView.tvSeatTypeCinemaSeat.visibility = View.INVISIBLE
-                itemView.ivSeatCinemaSeat.visibility = View.VISIBLE
-                itemView.ivSeatCinemaSeat.setImageResource(R.drawable.chair_taken)
-            }
+                    itemView.tvSeatTypeCinemaSeat.visibility = View.INVISIBLE
+                    itemView.ivSeatCinemaSeat.visibility = View.VISIBLE
+                    itemView.ivSeatCinemaSeat.setImageResource(R.drawable.chair_taken)
+                }
             "available" -> {
                 itemView.tvSeatTypeCinemaSeat.visibility = View.INVISIBLE
                 itemView.ivSeatCinemaSeat.visibility = View.VISIBLE

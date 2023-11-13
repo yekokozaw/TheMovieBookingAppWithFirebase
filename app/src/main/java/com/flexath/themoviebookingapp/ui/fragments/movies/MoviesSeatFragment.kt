@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.flexath.themoviebookingapp.R
@@ -21,8 +22,10 @@ import com.flexath.themoviebookingapp.ui.adapters.movies.SeatsMoviesSeatAdapter
 import com.flexath.themoviebookingapp.ui.delegates.SeatViewHolderDelegate
 import com.flexath.themoviebookingapp.ui.utils.CinemaData
 import com.flexath.themoviebookingapp.ui.utils.SeatData
+import io.github.muddz.styleabletoast.StyleableToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_movies_seat.*
+import kotlinx.android.synthetic.main.layout_app_bar_movies_seat.btnBackMoviesSeat
 
 class MoviesSeatFragment : Fragment(), SeatViewHolderDelegate {
 
@@ -33,7 +36,7 @@ class MoviesSeatFragment : Fragment(), SeatViewHolderDelegate {
     private var bookingDate: String? = null
     private val ticketPrice = 4500L
 
-    private var mSeatDoubleList: MutableLiveData<MutableList<MutableList<SeatVO>>> = MutableLiveData<MutableList<MutableList<SeatVO>>>()
+    private var mSeatDoubleList: MutableLiveData<MutableList<SeatVO>> = MutableLiveData<MutableList<SeatVO>>()
 
     // For Ticket
     private var mmMovieName:String? = null
@@ -42,7 +45,7 @@ class MoviesSeatFragment : Fragment(), SeatViewHolderDelegate {
     private lateinit var mmSeatTicketList:MutableList<String>
 
     companion object {
-        private val seatVO = SeatVO(null,null,null,null,"path",false)
+        private val seatVO = SeatVO(null,null,null,null,0,false)
     }
 
     override fun onCreateView(
@@ -89,23 +92,36 @@ class MoviesSeatFragment : Fragment(), SeatViewHolderDelegate {
 
     private fun requestData() {
         bookingDate?.let {
-            mCinemaModel.getSeatPlan(
-                "Bearer ${mCinemaModel.getOtp(201)?.token}", dayTimeSlotId, it,
-                onSuccess = { seatDoubleList ->
-                    mSeatDoubleList.value = seatDoubleList
-
-                    val seatList = addCinemaPath(seatDoubleList)
-                    mSeatsAdapter.bindNewData(seatList)
-
-                    getTicketTotalPriceAndNumber()
-                },
-                onFailure = {
-                    Toast.makeText(requireActivity(), "Seating Call fails", Toast.LENGTH_SHORT).show()
-                }
-            )
+            mmMovieName?.let { it1 ->
+                mCinemaModel.getSeatList(
+                    it1,
+                    bookingDate!!,
+                    dayTimeSlotId.toString(),
+                    onSuccess = {
+                        mSeatDoubleList.value = it
+                        mSeatsAdapter.bindNewData(it)
+                    },
+                    onFailure = {
+                        StyleableToast.makeText(requireActivity(), "Seating Call fails", Toast.LENGTH_SHORT,R.style.myErrorToast).show()
+                    }
+                )
+            }
+//            mCinemaModel.getSeatPlan(
+//                "Bearer ${mCinemaModel.getOtp(201)?.token}", dayTimeSlotId, it,
+//                onSuccess = { seatDoubleList ->
+//                    mSeatDoubleList.value = seatDoubleList
+//
+//                    val seatList = addCinemaPath(seatDoubleList)
+//                    mSeatsAdapter.bindNewData(seatList)
+//
+//                    getTicketTotalPriceAndNumber()
+//                },
+//                onFailure = {
+//                    Toast.makeText(requireActivity(), "Seating Call fails", Toast.LENGTH_SHORT).show()
+//                }
+//            )
         }
     }
-
 
     private fun setUpSeatsRecyclerView() {
         mSeatsAdapter = SeatsMoviesSeatAdapter(this)
@@ -136,6 +152,10 @@ class MoviesSeatFragment : Fragment(), SeatViewHolderDelegate {
 
     private fun setUpListeners() {
 
+        btnBackMoviesSeat.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         btnBuyButtonMoviesSeat.setOnClickListener {
             val action = MoviesSeatFragmentDirections.actionMoviesSeatToMoviesFood()
             action.argMovieName = mmMovieName
@@ -164,24 +184,22 @@ class MoviesSeatFragment : Fragment(), SeatViewHolderDelegate {
     }
 
     override fun onTapSeat(seatName: String,isAvailable:Boolean?) {
-        mSeatDoubleList.observe(this) { seatDoubleList ->
-            outer@ for (seatSingleList in seatDoubleList) {
-                for (seatVO in seatSingleList) {
-                    if (seatVO.seatName == seatName) {
-                        if(isAvailable == false) {
+        mSeatDoubleList.observe(this) {
+                for (seatVO in it) {
+                    if (seatVO.seat_name == seatName) {
+                         if(isAvailable == false) {
                             seatVO.isSelected = true
-                            Toast.makeText(requireActivity(), "Selected ${seatVO.seatName}", Toast.LENGTH_SHORT).show()
-                            mmSeatTicketList.add(seatVO.seatName)
+                            Toast.makeText(requireActivity(), "Selected ${seatVO.seat_name}", Toast.LENGTH_SHORT).show()
+                            mmSeatTicketList.add(seatVO.seat_name!!)
+
                         } else {
                             seatVO.isSelected = false
-                            Toast.makeText(requireActivity(), "Unselected ${seatVO.seatName}", Toast.LENGTH_SHORT).show()
-                            mmSeatTicketList.remove(seatVO.seatName)
+                            Toast.makeText(requireActivity(), "Unselected ${seatVO.seat_name}", Toast.LENGTH_SHORT).show()
+                            mmSeatTicketList.remove(seatVO.seat_name)
                         }
-                        break@outer
                     }
                 }
-            }
-            mSeatsAdapter.bindNewData(seatDoubleList)
+            mSeatsAdapter.bindNewData(it)
         }
         getTicketTotalPriceAndNumber()
     }
