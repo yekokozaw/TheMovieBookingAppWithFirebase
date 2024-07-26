@@ -93,6 +93,10 @@
         <item name="boxStrokeColor">@color/payment_edittext_outline_selector</item>
     </style>
 
+    <style name="CustomTextInputLayoutOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/colorSecondaryText</item>
+    </style>
+
     <!--    // Paddings-->
     <style name="PaddingFilmTypes">
         <item name="android:paddingTop">5dp</item>

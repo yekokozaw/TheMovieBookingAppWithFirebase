@@ -42,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/colLoginLogo"
+            android:fontFamily="@font/dm_sans_bold"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_large"
             android:text="Login Here"
@@ -53,26 +54,23 @@
             android:layout_width="25dp"
             android:layout_height="30dp"
             android:layout_marginTop="64dp"
-            android:src="@drawable/gmail_logo"
             android:layout_below="@id/tvLogin"
             android:layout_marginStart="@dimen/margin_medium_2"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etEmailAddress"
-            android:layout_width="@dimen/width_251dp"
+            style="@style/CustomTextInputLayoutOutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            app:startIconTint="@color/white"
+            app:startIconDrawable="@drawable/e_mail"
+            android:layout_marginEnd="@dimen/margin_medium_2"
             android:layout_below="@id/tvLogin"
-            android:layout_marginStart="@dimen/margin_medium_3_2x"
-            android:layout_marginTop="@dimen/margin_xxlarge"
-            android:cursorVisible="true"
-            android:hint="Enter Your Email Address"
-            android:textColorHint="@color/colorSecondaryText2"
-            app:boxBackgroundColor="@color/colorPrimary"
-            app:boxStrokeColor="@color/white"
-            app:boxStrokeErrorColor="@color/colorPrimary"
-            app:boxStrokeWidth="@dimen/margin_1dp"
-            app:errorContentDescription="You type wrong number"
-            app:hintTextColor="@color/colorPrimary">
+            android:hint="Enter Email"
+            android:textColorHint="@color/colorSecondaryText"
+            app:hintTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtEmailAddress"
@@ -86,33 +84,21 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
-            android:id="@+id/ivPasswordLogo"
-            android:layout_width="25dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="55dp"
-            android:src="@drawable/password_logo"
-            android:layout_below="@id/ivGmailLogo"
-            android:layout_marginStart="@dimen/margin_medium_2"/>
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etPassword"
-            android:layout_width="@dimen/width_251dp"
+            style="@style/CustomTextInputLayoutOutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:backgroundTint="@color/colorSecondaryText"
+            app:startIconDrawable="@drawable/baseline_lock_open_24dp"
+            app:startIconTint="@color/white"
+            android:layout_marginEnd="@dimen/margin_medium_2"
             android:layout_below="@id/etEmailAddress"
-            android:layout_marginStart="@dimen/margin_medium_3_2x"
-            android:layout_marginTop="@dimen/margin_large"
-            android:cursorVisible="true"
-            android:hint="Enter Your Password"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/colorGrey"
-            android:textColorHint="@color/colorSecondaryText2"
-            app:boxBackgroundColor="@color/colorPrimary"
-            app:boxStrokeColor="@color/white"
-            app:boxStrokeErrorColor="@color/colorPrimary"
-            app:boxStrokeWidth="@dimen/margin_1dp"
-            app:errorContentDescription="You type wrong number"
-            app:hintTextColor="@color/colorPrimary">
+            android:hint="@string/lbl_enter_password"
+            android:textColorHint="@color/colorSecondaryText"
+            app:hintTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtPassword"
@@ -126,26 +112,28 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
             android:layout_below="@id/etPassword"
             android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="@dimen/margin_medium_3"
             android:layout_marginTop="@dimen/margin_xlarge"
+            android:layout_marginBottom="@dimen/margin_medium"
             android:backgroundTint="@color/colorAccent"
             android:text="Login"
-            app:cornerRadius="@dimen/margin_medium" />
+            app:cornerRadius="@dimen/margin_medium_3" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvForgetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot password?"
+            android:fontFamily="@font/dm_sans"
+            android:layout_marginEnd="@dimen/margin_medium_3"
+            android:text="@string/forgot_password"
             android:textColor="@color/colorAccent"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_alignParentEnd="true"
             android:layout_below="@id/btnLogin"/>
 
     </RelativeLayout>
@@ -166,6 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/tvDontHaveAccount"
         android:layout_toEndOf="@id/tvDontHaveAccount"
+        android:fontFamily="@font/dm_sans_medium"
         android:text="Register"
         android:layout_marginStart="@dimen/margin_small"
         android:textColor="@color/colorAccent" />
