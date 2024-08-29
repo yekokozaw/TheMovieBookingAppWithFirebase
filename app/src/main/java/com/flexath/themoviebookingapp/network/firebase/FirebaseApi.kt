@@ -32,6 +32,7 @@ interface FirebaseApi {
         onSuccess: (banner: CinemaDetailsVO) -> Unit,
         onFailure: (String) -> Unit
     )
+
     fun getBanner(
         onSuccess: (banner: List<BannersVO>) -> Unit, onFailure: (String) -> Unit
     )

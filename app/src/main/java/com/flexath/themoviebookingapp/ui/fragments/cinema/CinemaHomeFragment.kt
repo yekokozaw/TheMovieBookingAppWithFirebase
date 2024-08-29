@@ -39,7 +39,6 @@ class CinemaHomeFragment : Fragment(),CinemaListViewHolderDelegate {
 
         //setUpAppBarListeners()
         setUpViewPod()
-        requestData()
     }
 
     private fun setUpAppBarListeners() {
@@ -66,19 +65,19 @@ class CinemaHomeFragment : Fragment(),CinemaListViewHolderDelegate {
         cinemaListViewPod.setUpMovieListViewPod(this)
     }
 
-    private fun requestData() {
-        mCinemaModel.getCinemaTimeSlots(
-            "All",
-            "Bearer 18112|dp0oclqVIL57JvmormSokXYXsuEndQX0bhIVMswr",
-            "alldate",
-            onSuccess = {
-                cinemaListViewPod.setNewData(it)
-            },
-            onFailure = {
-                Toast.makeText(requireContext(), "Network Call Error", Toast.LENGTH_SHORT).show()
-            }
-        )
-    }
+//    private fun requestData() {
+//        mCinemaModel.getCinemaTimeSlots(
+//            "All",
+//            "Bearer 18112|dp0oclqVIL57JvmormSokXYXsuEndQX0bhIVMswr",
+//            "alldate",
+//            onSuccess = {
+//                cinemaListViewPod.setNewData(it)
+//            },
+//            onFailure = {
+//                Toast.makeText(requireContext(), "Network Call Error", Toast.LENGTH_SHORT).show()
+//            }
+//        )
+//    }
     
     override fun onClickCinemaSeeDetails(cinemaId: Int) {
         val action = CinemaHomeFragmentDirections.actionCinemaHomeToCinemaInfo()

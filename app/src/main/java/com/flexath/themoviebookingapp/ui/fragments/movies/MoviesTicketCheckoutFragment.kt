@@ -107,7 +107,7 @@ class MoviesTicketCheckoutFragment : Fragment(), SnackTicketCheckoutViewHolderDe
         tvTicketNamesTicket.text = getTicketList()
 
         val total = mTicketTotalPrice?.plus(mSnackTotalPrice) ?: 0
-        val totalMoney = "${(total * 0.03 + total ?: 0)} Ks"
+        val totalMoney = "${(total * 0.03 + total )} Ks"
         tvTotalMoney.text = totalMoney
         val conveniencefee = total * 0.03
         tvConvenienceFee.text = "$conveniencefee KS"

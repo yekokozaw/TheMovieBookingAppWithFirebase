@@ -145,9 +145,12 @@ class MoviesCinemaFragment : Fragment(), CinemaListViewHolderDelegate {
                 it,
                 "Bearer 18112|dp0oclqVIL57JvmormSokXYXsuEndQX0bhIVMswr",
                 date,
-                onSuccess = {
-                    mCinemaList = it
-                    cinemaListViewPod.setNewData(it)
+                onSuccess = { cinemaList ->
+                    mCinemaList = cinemaList
+                    cinemaListViewPod.setNewData(cinemaList)
+                    if (cinemaList.isEmpty()){
+                        Toast.makeText(requireContext(), "ပြသ‌နေသောပွဲများ မရှိသေးပါ", Toast.LENGTH_SHORT).show()
+                    }
                 },
                 onFailure = {
                     Toast.makeText(requireContext(), "Network call error", Toast.LENGTH_SHORT).show()
@@ -179,7 +182,6 @@ class MoviesCinemaFragment : Fragment(), CinemaListViewHolderDelegate {
     override fun onClickTimeSlot(date: String) {
         mBookingDate = date
         requestData(date)
-        Toast.makeText(requireContext(), date, Toast.LENGTH_SHORT).show()
     }
 
     override fun getCinemaName(cinemaName: String?) {

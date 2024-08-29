@@ -69,7 +69,7 @@ class ProfileHomeFragment : Fragment() {
                 .setTitle("Log Out ?")
                 .setMessage("Are you sure to log out ?")
                 .setCancelable(false)
-                .setPositiveButton("Yes") { dialog, which ->
+                .setPositiveButton("Yes") { _, _ ->
                     (activity as MainActivity).finish()
 
                     Toast.makeText(requireActivity(),"Logout call succeeded",Toast.LENGTH_SHORT).show()
@@ -80,7 +80,7 @@ class ProfileHomeFragment : Fragment() {
                     (activity as MainActivity).finish()
 
                 }
-                .setNegativeButton("Cancel") { dialog, which -> dialog?.dismiss() }
+                .setNegativeButton("Cancel") { dialog, _ -> dialog?.dismiss() }
                 .create()
             dialog.show()
         }

@@ -339,7 +339,7 @@ object RetrofitDataAgentImpl : CinemaDataAgent {
                             onSuccess(ticket)
                         }
                     } else {
-                        onFailure("Don't make errors,Aung Thiha")
+                        onFailure("Don't make errors")
                     }
                 }
 

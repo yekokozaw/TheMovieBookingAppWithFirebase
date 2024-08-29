@@ -7,36 +7,41 @@
     android:background="@color/colorPrimary"
     tools:context=".ui.activities.RegisterActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvRegisterHere"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_medium_3"
-        android:fontFamily="@font/dm_sans"
-        android:text="Register Here"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_heading_1x" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/tvAppBar"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_height="?attr/actionBarSize">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            app:title="Register Here"
+            app:titleCentered="true"
+            app:titleTextColor="@color/white"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvRegisterHere"
+        android:layout_below="@id/tvAppBar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_medium_3"
         android:fontFamily="@font/dm_sans"
-        android:text="Create a new account"
+        android:text="@string/lbl_create_a_new_account"
         android:textColor="@color/colorAccent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcvRegisterImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvRegisterHere"
+        android:layout_below="@id/tvAppBar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="68dp"
+        android:contentDescription="@string/content_profile_image"
         android:background="@color/colorPrimary"
         android:clickable="true"
+        android:focusable="true"
         app:cardCornerRadius="48dp">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -50,11 +55,12 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edtUsername"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/mcvRegisterImage"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginTop="@dimen/margin_xxlarge"
+        android:layout_marginEnd="@dimen/margin_xlarge"
         android:backgroundTint="@color/colorSecondaryText"
         android:fontFamily="@font/dm_sans"
         android:hint="Enter User Name"
@@ -63,10 +69,11 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edtRegisterEmail"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edtUsername"
         android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_xlarge"
         android:layout_marginTop="@dimen/margin_medium_2"
         android:backgroundTint="@color/colorSecondaryText"
         android:fontFamily="@font/dm_sans"
@@ -76,9 +83,10 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edtRegisterPassword"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edtRegisterEmail"
+        android:layout_marginEnd="@dimen/margin_xlarge"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginTop="@dimen/margin_large"
         android:backgroundTint="@color/colorSecondaryText"
@@ -89,9 +97,10 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edtPhoneNumber"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edtRegisterPassword"
+        android:layout_marginEnd="@dimen/margin_xlarge"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginTop="@dimen/margin_xlarge"
         android:backgroundTint="@color/colorSecondaryText"
